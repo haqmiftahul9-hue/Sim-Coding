@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rapor Siswa - SimCoding Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-primary": "#adc6ff",
+                      "error-container": "#ffdad6",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed": "#001a41",
+                      "surface-bright": "#faf9fd",
+                      "on-secondary-container": "#264a86",
+                      "primary": "#00183d",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#1a1b1f",
+                      "on-tertiary-container": "#c9865b",
+                      "on-error": "#ffffff",
+                      "surface-tint": "#455e90",
+                      "primary-fixed-dim": "#adc6ff",
+                      "outline": "#747780",
+                      "tertiary-container": "#4e2200",
+                      "secondary-fixed": "#d8e2ff",
+                      "secondary-container": "#9bbbff",
+                      "on-tertiary-fixed": "#311300",
+                      "on-primary": "#ffffff",
+                      "on-surface-variant": "#44474f",
+                      "outline-variant": "#c4c6d0",
+                      "primary-container": "#0f2d5c",
+                      "on-primary-container": "#7d96cb",
+                      "tertiary-fixed": "#ffdbc7",
+                      "surface-dim": "#dad9de",
+                      "primary-fixed": "#d8e2ff",
+                      "surface-container-low": "#f4f3f8",
+                      "surface-container-highest": "#e3e2e6",
+                      "surface": "#faf9fd",
+                      "secondary": "#3c5e9b",
+                      "on-primary-fixed-variant": "#2c4676",
+                      "tertiary": "#2e1200",
+                      "on-secondary-fixed-variant": "#214582",
+                      "inverse-surface": "#2f3034",
+                      "tertiary-fixed-dim": "#ffb688",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "on-primary-fixed": "#001a41",
+                      "surface-container-high": "#e9e7ec",
+                      "surface-container": "#efedf2",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f1f0f5",
+                      "on-background": "#1a1b1f",
+                      "surface-variant": "#e3e2e6",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#6c3a14",
+                      "background": "#faf9fd",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sidebar-width": "260px",
+                      "2xl": "48px",
+                      "md": "16px",
+                      "container-max": "1280px",
+                      "sm": "8px",
+                      "3xl": "64px",
+                      "gutter": "24px",
+                      "base": "4px",
+                      "xl": "32px",
+                      "lg": "24px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "60px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-headline-lg, .font-headline-md, .font-headline-sm, .font-display-lg { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        /* Print-specific styles */
+        @media print {
+            body { background-color: #ffffff; }
+            nav, .sidebar, .top-nav, .print-hide { display: none !important; }
+            .print-canvas { 
+                margin: 0 !important; 
+                padding: 0 !important; 
+                box-shadow: none !important; 
+                border: none !important; 
+                width: 100% !important; 
+                max-width: 100% !important;
+            }
+            .page-break { page-break-after: always; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex font-body-md text-body-md">
+<!-- SideNavBar -->
+<nav class="w-sidebar-width h-screen fixed left-0 top-0 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-fixed font-body-md text-body-md no shadows hidden md:flex flex-col py-lg z-20 print-hide">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-primary">SimCoding</h1>
+<p class="font-label-sm text-label-sm text-on-primary-container mt-1">Administrator Portal</p>
+</div>
+<ul class="flex-1 overflow-y-auto px-md space-y-sm">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors Active: scale 0.98x transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-on-primary transition-colors">dashboard</span>
+<span class="group-hover:text-on-primary transition-colors">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors Active: scale 0.98x transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-on-primary transition-colors">group</span>
+<span class="group-hover:text-on-primary transition-colors">Data Siswa</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors Active: scale 0.98x transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-on-primary transition-colors">fingerprint</span>
+<span class="group-hover:text-on-primary transition-colors">Presensi Digital</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors Active: scale 0.98x transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-on-primary transition-colors">assignment</span>
+<span class="group-hover:text-on-primary transition-colors">Tugas Siswa</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors Active: scale 0.98x transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-on-primary transition-colors">analytics</span>
+<span class="group-hover:text-on-primary transition-colors">Penilaian</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-primary border-l-2 border-secondary-container bg-surface-container-highest/10 font-bold hover:bg-primary-fixed-dim/20 transition-colors Active: scale 0.98x transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span>Rapor</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors Active: scale 0.98x transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-on-primary transition-colors">summarize</span>
+<span class="group-hover:text-on-primary transition-colors">Rekapitulasi</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors Active: scale 0.98x transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-on-primary transition-colors">settings</span>
+<span class="group-hover:text-on-primary transition-colors">Pengaturan</span>
+</a>
+</li>
+</ul>
+<div class="px-lg mt-auto flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-primary-fixed">
+<img alt="SimCoding Admin Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a school administrator in a bright, modern office setting. The lighting is soft and flattering, creating a trustworthy and competent mood. The color palette features deep navy blues and crisp whites, aligning with a premium educational platform aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1XB7Ck3c3YzBeKuSbHKsRskR5F3ltDKp36-DDO6lir7GyCpd_NFuDQ4TW0tHYVlJUplLEKlfZ5ImJZsRMSnl3hl0WEJg03FNujvDZx-XnmhHHp9s4hOHpi46TbiBzxg-ys2tpZnN4--669D52zCfPSfMtOlXcZtUEaUkqsMZO9SrUm6iDK5Xrd11Yh14wnIvv69p3HLUY-GJyVddSBWSqGfxdlvFUyrfzm-15n5ZY_1QUsOzSKBhikA"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-primary">SimCoding Admin</p>
+<p class="font-label-sm text-label-sm text-on-primary-container">Administrator</p>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-sidebar-width min-w-0">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-dim text-primary dark:text-inverse-primary font-label-md text-label-md docked full-width top-0 border-b border-outline-variant shadow-sm flex justify-between items-center w-full px-lg h-16 sticky z-10 print-hide">
+<div class="flex items-center gap-md md:hidden">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-on-primary-fixed">SimCoding</span>
+</div>
+<div class="hidden md:flex items-center gap-gutter">
+<!-- Search bar would go here if needed, JSON says on_left -->
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-1.5 pl-10 pr-4 text-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors relative w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-highest">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-highest">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden ml-sm cursor-pointer border border-outline-variant md:hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small circular avatar placeholder image showing a generic user icon in soft blue and white tones, matching a clean software interface style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDuyD6aGbrlp239rjohTV5_hxLyYYIeviHnM1rr75hQPXRUmPWfq5LaJZkEBBybwjbz1FcztpjSCV1iZ0j3HW6uwSEeOCIJVF9VB6Y9GVlFJ9UaS5lNQ-k8vIRNvAQXHqyrRWBjGwhuYYJVZzmdyrA_0pTSo3Va3t62XjGh_GDf8Cxl55wRWlF6pU4SrF-QraryGDFu2f-OMerafdBod4SwccSQtw7TjEU2VgLrjvEQbSYspcLgWcWwA"/>
+</div>
+</div>
+</header>
+<!-- Document Canvas -->
+<main class="flex-1 p-md md:p-lg bg-[#EFF6FF] overflow-y-auto">
+<!-- Controls Bar (Print Hide) -->
+<div class="mb-lg flex justify-between items-end print-hide">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Preview Rapor</h2>
+<p class="text-on-surface-variant font-body-sm text-body-sm mt-1">Review the document before exporting or printing.</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-2 bg-surface border border-outline-variant text-primary font-label-md text-label-md rounded hover:bg-surface-container-highest transition-colors flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                        Edit Rapor
+                    </button>
+<button class="px-md py-2 bg-secondary text-on-primary font-label-md text-label-md rounded shadow-sm hover:bg-primary transition-colors flex items-center gap-sm border-t border-white/20" onclick="window.print()">
+<span class="material-symbols-outlined text-[18px]">print</span>
+                        Cetak PDF
+                    </button>
+</div>
+</div>
+<!-- Print Canvas -->
+<div class="print-canvas max-w-[800px] mx-auto bg-surface p-xl border border-outline-variant/30 shadow-[0px_1px_3px_rgba(15,45,92,0.05),_0px_10px_20px_rgba(15,45,92,0.02)] min-h-[1056px] relative">
+<!-- 1. School Header -->
+<div class="flex items-center justify-between border-b-2 border-primary pb-md mb-lg">
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 bg-surface-container-low rounded border border-outline-variant/50 flex items-center justify-center p-2">
+<img alt="School Logo" class="w-full h-full object-contain" data-alt="A clean, minimalist abstract logo design representing a modern coding academy. The logo uses geometric shapes in deep navy blue and soft accent blue, set against a pure white background, conveying professionalism and technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9VbPomviGRVz9V4aCLTGDHee-vlzJn-YCLwYPGflVN_2-nOtibyXKvY5z8jHwK9wco_nvXmUDI7kwISJKpbcQifc2Ui22MltVKHrLD2XOxfADCnwXvYXXBSZ9DMwTLkiiMKa-mcnVX_onP97Uh7OA9j-18OJNybhGfJx-bD1BqoSbdgMkC9LDSQxhBDfVYK8FVGckzmBeXS6HUnWdseav6tWrc5UntPmxmY1LMO33TIWi3LsL1Wu6Cg"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">SimCoding Academy</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pusat Pelatihan Pemrograman &amp; Logika Komputasi</p>
+<p class="font-label-sm text-label-sm text-outline mt-1">Jl. Teknologi No. 42, Kota Inovasi | info@simcoding.edu</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-sm text-headline-sm text-primary font-bold uppercase tracking-wider">Laporan Hasil Belajar</p>
+<p class="font-label-md text-label-md text-secondary-container mt-1">Semester Ganjil 2023/2024</p>
+</div>
+</div>
+<!-- 2. Student Info -->
+<div class="grid grid-cols-2 gap-x-xl gap-y-sm mb-lg">
+<div class="flex">
+<span class="w-32 font-label-md text-label-md text-on-surface-variant">Nama Siswa</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">: Budi Santoso</span>
+</div>
+<div class="flex">
+<span class="w-32 font-label-md text-label-md text-on-surface-variant">Kelas / Tingkat</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">: Web Dev Dasar (WDD-A)</span>
+</div>
+<div class="flex">
+<span class="w-32 font-label-md text-label-md text-on-surface-variant">Nomor Induk (NIS)</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">: 202301045</span>
+</div>
+<div class="flex">
+<span class="w-32 font-label-md text-label-md text-on-surface-variant">Fasilitator</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">: Pak Budi Hartono</span>
+</div>
+</div>
+<!-- 3. Competency Table -->
+<div class="mb-lg">
+<h3 class="font-label-md text-label-md text-primary bg-surface-container-low px-md py-sm border-l-4 border-secondary font-bold uppercase tracking-wide mb-sm">A. Pencapaian Kompetensi</h3>
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant border-y border-outline-variant/50">
+<th class="font-label-sm text-label-sm uppercase py-2 px-3 text-left w-12">No</th>
+<th class="font-label-sm text-label-sm uppercase py-2 px-3 text-left w-1/3">Kompetensi</th>
+<th class="font-label-sm text-label-sm uppercase py-2 px-3 text-center w-24">Nilai (Huruf)</th>
+<th class="font-label-sm text-label-sm uppercase py-2 px-3 text-left">Deskripsi Kemajuan</th>
+</tr>
+</thead>
+<tbody class="text-body-sm font-body-sm text-on-surface">
+<tr class="border-b border-outline-variant/30 hover:bg-[#EFF6FF] transition-colors min-h-[56px]">
+<td class="py-3 px-3 text-center text-outline">1</td>
+<td class="py-3 px-3 font-medium text-primary">Logic Coding (Algoritma)</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-block w-8 h-8 leading-8 text-center rounded-full bg-secondary-fixed/50 text-on-secondary-fixed font-bold">A</span>
+</td>
+<td class="py-3 px-3 text-on-surface-variant">Sangat baik dalam menyusun alur logika runtut. Mampu memecahkan masalah kompleks dengan pseudo-code yang efisien.</td>
+</tr>
+<tr class="border-b border-outline-variant/30 hover:bg-[#EFF6FF] transition-colors min-h-[56px]">
+<td class="py-3 px-3 text-center text-outline">2</td>
+<td class="py-3 px-3 font-medium text-primary">Concept Understanding (Sintaks &amp; Struktur)</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-block w-8 h-8 leading-8 text-center rounded-full bg-secondary-fixed/50 text-on-secondary-fixed font-bold">A-</span>
+</td>
+<td class="py-3 px-3 text-on-surface-variant">Memahami konsep dasar variabel, perulangan, dan fungsi dengan baik. Sedikit bimbingan diperlukan pada manipulasi DOM lanjutan.</td>
+</tr>
+<tr class="border-b border-outline-variant/30 hover:bg-[#EFF6FF] transition-colors min-h-[56px]">
+<td class="py-3 px-3 text-center text-outline">3</td>
+<td class="py-3 px-3 font-medium text-primary">Problem Solving (Debugging)</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-block w-8 h-8 leading-8 text-center rounded-full bg-surface-variant text-on-surface-variant font-bold">B+</span>
+</td>
+<td class="py-3 px-3 text-on-surface-variant">Mampu mengidentifikasi error dasar, namun terkadang butuh waktu lebih lama untuk menyelesaikan bug yang tersembunyi. Perlu lebih teliti membaca log.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- 4. Project Portfolio -->
+<div class="mb-lg">
+<h3 class="font-label-md text-label-md text-primary bg-surface-container-low px-md py-sm border-l-4 border-secondary font-bold uppercase tracking-wide mb-sm">B. Portofolio Proyek Utama</h3>
+<div class="grid grid-cols-2 gap-md">
+<div class="border border-outline-variant/50 rounded p-md bg-surface flex flex-col">
+<div class="flex justify-between items-start mb-sm">
+<h4 class="font-label-md text-label-md text-primary">Aplikasi Kalkulator Sederhana</h4>
+<span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[11px] font-bold">Skor: 92/100</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-sm mb-2">Proyek akhir modul dasar JavaScript. Mengimplementasikan operasi matematika dasar dan antarmuka responsif.</p>
+<div class="mt-auto pt-2 border-t border-outline-variant/20 flex gap-2">
+<span class="text-[10px] bg-surface-container px-2 py-0.5 rounded text-outline">HTML/CSS</span>
+<span class="text-[10px] bg-surface-container px-2 py-0.5 rounded text-outline">JavaScript Dasar</span>
+</div>
+</div>
+<div class="border border-outline-variant/50 rounded p-md bg-surface flex flex-col">
+<div class="flex justify-between items-start mb-sm">
+<h4 class="font-label-md text-label-md text-primary">To-Do List Interaktif</h4>
+<span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[11px] font-bold">Skor: 88/100</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-sm mb-2">Aplikasi manajemen tugas menggunakan DOM manipulation dan Local Storage untuk penyimpanan data persisten.</p>
+<div class="mt-auto pt-2 border-t border-outline-variant/20 flex gap-2">
+<span class="text-[10px] bg-surface-container px-2 py-0.5 rounded text-outline">DOM Manipulation</span>
+<span class="text-[10px] bg-surface-container px-2 py-0.5 rounded text-outline">Local Storage</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. Teacher Comments & 6. Summary Block -->
+<div class="grid grid-cols-12 gap-lg mb-xl">
+<div class="col-span-8">
+<h3 class="font-label-md text-label-md text-primary bg-surface-container-low px-md py-sm border-l-4 border-secondary font-bold uppercase tracking-wide mb-sm">C. Catatan Fasilitator</h3>
+<div class="border border-outline-variant/30 rounded p-md bg-surface text-body-sm font-body-sm text-on-surface-variant italic leading-relaxed">
+                            "Budi menunjukkan minat yang sangat tinggi dalam mempelajari logika pemrograman. Kemampuannya menyerap konsep baru tergolong cepat, terutama pada bagian struktur kontrol (if/else, perulangan). Untuk semester depan, disarankan agar Budi lebih banyak berlatih membaca dokumentasi teknis dan bereksperimen dengan debugging secara mandiri untuk meningkatkan kecepatan dalam menyelesaikan masalah (problem-solving). Terus pertahankan semangat belajarnya!"
+                         </div>
+</div>
+<div class="col-span-4">
+<div class="bg-primary text-on-primary rounded-lg p-md h-full flex flex-col justify-center items-center shadow-sm relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-white/5 rounded-full"></div>
+<div class="absolute -left-4 -bottom-4 w-16 h-16 bg-white/5 rounded-full"></div>
+<p class="font-label-sm text-label-sm text-inverse-primary uppercase tracking-wider mb-1 z-10">Nilai Akhir</p>
+<div class="font-display-lg text-display-lg text-white font-bold leading-none mb-1 z-10">90</div>
+<div class="inline-block bg-white/20 px-3 py-1 rounded-full mt-2 z-10">
+<p class="font-label-md text-label-md text-white">Predikat: SANGAT BAIK</p>
+</div>
+</div>
+</div>
+</div>
+<!-- 7. Footer / Signatures -->
+<div class="mt-auto pt-xl border-t border-outline-variant/50">
+<div class="flex justify-between px-lg">
+<div class="text-center w-48">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-12">Mengetahui,<br/>Orang Tua / Wali Siswa</p>
+<div class="border-b border-outline-variant w-full mb-1"></div>
+<p class="font-label-sm text-label-sm text-outline">(....................................................)</p>
+</div>
+<div class="text-center w-48">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-1">Kota Inovasi, 15 Desember 2023</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-12">Fasilitator Kelas</p>
+<div class="border-b border-outline-variant w-full mb-1 relative">
+<!-- Signature Placeholder (Optional aesthetic touch) -->
+<div class="absolute bottom-1 w-full text-center opacity-30">
+<span style="font-family: 'Brush Script MT', cursive; font-size: 24px; color: #0f2d5c;">Budi Hartono</span>
+</div>
+</div>
+<p class="font-label-md text-label-md text-primary font-bold">Pak Budi Hartono</p>
+<p class="font-label-sm text-label-sm text-outline">NIP. 19850412 201001 1 003</p>
+</div>
+</div>
+</div>
+<!-- Watermark -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.02] z-0 overflow-hidden">
+<span class="font-display-lg text-[120px] font-bold text-primary -rotate-45 select-none">SIMCODING</span>
+</div>
+</div>
+<div class="h-12 w-full print-hide"></div> <!-- Bottom padding for scrolling -->
+</main>
+</div>
+</body></html>

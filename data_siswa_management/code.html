@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SimCoding - Data Siswa</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-on-surface": "#f1f0f5",
+                      "on-primary-fixed": "#001a41",
+                      "on-error": "#ffffff",
+                      "surface-dim": "#dad9de",
+                      "surface-container": "#efedf2",
+                      "inverse-primary": "#adc6ff",
+                      "tertiary-fixed": "#ffdbc7",
+                      "on-tertiary-fixed": "#311300",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "background": "#faf9fd",
+                      "primary": "#00183d",
+                      "on-primary-container": "#7d96cb",
+                      "on-surface": "#1a1b1f",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "on-surface-variant": "#44474f",
+                      "on-background": "#1a1b1f",
+                      "inverse-surface": "#2f3034",
+                      "on-secondary-fixed-variant": "#214582",
+                      "secondary-container": "#9bbbff",
+                      "secondary-fixed": "#d8e2ff",
+                      "secondary": "#3c5e9b",
+                      "tertiary": "#2e1200",
+                      "primary-fixed-dim": "#adc6ff",
+                      "primary-container": "#0f2d5c",
+                      "outline-variant": "#c4c6d0",
+                      "on-primary": "#ffffff",
+                      "surface-container-high": "#e9e7ec",
+                      "on-error-container": "#93000a",
+                      "outline": "#747780",
+                      "on-secondary-fixed": "#001a41",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#2c4676",
+                      "surface-container-highest": "#e3e2e6",
+                      "surface-container-lowest": "#ffffff",
+                      "surface": "#faf9fd",
+                      "on-tertiary-fixed-variant": "#6c3a14",
+                      "on-secondary-container": "#264a86",
+                      "surface-variant": "#e3e2e6",
+                      "surface-tint": "#455e90",
+                      "tertiary-container": "#4e2200",
+                      "surface-bright": "#faf9fd",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#f4f3f8",
+                      "primary-fixed": "#d8e2ff",
+                      "tertiary-fixed-dim": "#ffb688",
+                      "on-tertiary-container": "#c9865b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "xl": "32px",
+                      "base": "4px",
+                      "xs": "4px",
+                      "container-max": "1280px",
+                      "md": "16px",
+                      "2xl": "48px",
+                      "3xl": "64px",
+                      "sm": "8px",
+                      "lg": "24px",
+                      "sidebar-width": "260px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "60px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .table-shadow {
+            box-shadow: 0px 1px 3px rgba(15, 45, 92, 0.05), 0px 10px 20px rgba(15, 45, 92, 0.02);
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<aside class="w-sidebar-width h-screen fixed left-0 top-0 bg-primary dark:bg-primary-container z-20 flex flex-col h-full py-lg">
+<div class="px-lg mb-xl flex flex-col gap-sm items-start">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-fixed-dim/20 flex items-center justify-center shrink-0">
+<img alt="SimCoding Admin Avatar" class="w-full h-full object-cover" data-alt="A highly detailed close-up portrait of a professional male administrator in his 30s. He is wearing a crisp white shirt and a dark blue tie. The lighting is soft and even, highlighting a friendly yet authoritative expression. The background is a blurred, bright office environment, conveying a modern, premium SaaS aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGnM8gQZoQFksHO4gAsEZxWkD-MYyvnw8W-DzT8YT_zRzpY_SDgUHUUY01SAlpygR_irWTqX9yy0mBRd6g6c8CPVsB7qgzaq2BcfWi5XNdAYdjKfAL6ScRS4mcgMw-c3y4GqMrnqfikJV9y06GToDFHwbL6h5zQLZnUUbFcfFD2W-4N4wa3XVQnpbtTS6av_t7wqj4Hk8-_VUzMeWr_Jk0P_1VSUAMdvuMrv_sdMnFcS5ZGKoOYv88rw"/>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-primary">SimCoding Admin</h2>
+<p class="font-label-sm text-label-sm text-on-primary-fixed-variant">Administrator Portal</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto px-md">
+<ul class="flex flex-col gap-xs font-body-md text-body-md">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors group" href="#">
+<span aria-hidden="true" class="material-symbols-outlined shrink-0" data-icon="dashboard">dashboard</span>
+<span class="group-active:scale-[0.98] transition-all duration-200">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary border-l-2 border-secondary-container bg-surface-container-highest/10 font-bold hover:bg-primary-fixed-dim/20 transition-colors group" href="#">
+<span aria-hidden="true" class="material-symbols-outlined shrink-0" data-icon="group" data-weight="fill" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="group-active:scale-[0.98] transition-all duration-200">Data Siswa</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors group" href="#">
+<span aria-hidden="true" class="material-symbols-outlined shrink-0" data-icon="fingerprint">fingerprint</span>
+<span class="group-active:scale-[0.98] transition-all duration-200">Presensi Digital</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors group" href="#">
+<span aria-hidden="true" class="material-symbols-outlined shrink-0" data-icon="assignment">assignment</span>
+<span class="group-active:scale-[0.98] transition-all duration-200">Tugas Siswa</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors group" href="#">
+<span aria-hidden="true" class="material-symbols-outlined shrink-0" data-icon="analytics">analytics</span>
+<span class="group-active:scale-[0.98] transition-all duration-200">Penilaian</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors group" href="#">
+<span aria-hidden="true" class="material-symbols-outlined shrink-0" data-icon="description">description</span>
+<span class="group-active:scale-[0.98] transition-all duration-200">Rapor</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors group" href="#">
+<span aria-hidden="true" class="material-symbols-outlined shrink-0" data-icon="summarize">summarize</span>
+<span class="group-active:scale-[0.98] transition-all duration-200">Rekapitulasi</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors group" href="#">
+<span aria-hidden="true" class="material-symbols-outlined shrink-0" data-icon="settings">settings</span>
+<span class="group-active:scale-[0.98] transition-all duration-200">Pengaturan</span>
+</a>
+</li>
+</ul>
+</nav>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-sidebar-width flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-dim font-label-md text-label-md shadow-sm border-b border-outline-variant docked full-width top-0 sticky z-10">
+<div class="flex justify-between items-center w-full px-lg h-16">
+<!-- Search Bar (on_left) -->
+<div class="flex-1 max-w-md">
+<div class="relative flex items-center w-full h-10 rounded-lg bg-surface-container-highest overflow-hidden">
+<div class="grid place-items-center h-full w-12 text-outline">
+<span class="material-symbols-outlined text-xl" data-icon="search">search</span>
+</div>
+<input class="peer h-full w-full outline-none text-body-sm bg-transparent pr-2 focus:ring-0 border-none" placeholder="Search..." type="text"/>
+</div>
+</div>
+<!-- Brand (Centerish / Leftish depending on intent, moving to right of search for space) -->
+<div class="hidden md:flex ml-lg">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-on-primary-fixed">SimCoding</span>
+</div>
+<!-- Trailing Icons & Profile -->
+<div class="flex items-center gap-sm ml-auto">
+<button aria-label="Notifications" class="p-2 text-on-surface-variant hover:text-primary transition-colors active:opacity-80 rounded-full hover:bg-surface-container-high focus:outline-none">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Help" class="p-2 text-on-surface-variant hover:text-primary transition-colors active:opacity-80 rounded-full hover:bg-surface-container-high focus:outline-none">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden ml-sm cursor-pointer hover:ring-2 ring-primary-fixed transition-all">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A highly detailed close-up portrait of a professional male administrator in his 30s. He is wearing a crisp white shirt and a dark blue tie. The lighting is soft and even, highlighting a friendly yet authoritative expression. The background is a blurred, bright office environment, conveying a modern, premium SaaS aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwUr045fFsK7FZftxwRXeucO_pz15Ed1SSlnJwxNdTmvJY-ylrFOY2w16QV10p6IvFkN_GIJFv7-QiYnDHH72YZ9YWuD5KQbHmYMz16QqsEmXKtID90fpLVNJNAgpA5n23wXDxqmvpuHYjH4YnI8UTVns07Jxx0czDdNFg7aAFKcz_kqnhvAH0HVjQqkhYuqFZGFWI23Agci3rlAlDRgYcRRqBwHOuhDALFEh_1EEn4W6yhOuyonIYaQ"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 p-lg bg-[#EFF6FF] overflow-y-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md mb-xl">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary">Data Siswa</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Kelola data siswa dan cetak kartu barcode.</p>
+</div>
+<div class="flex flex-wrap gap-sm">
+<button class="flex items-center gap-xs px-md py-sm bg-secondary text-on-secondary rounded-lg font-label-md text-label-md hover:bg-secondary/90 transition-colors border-t border-white/20 active:translate-y-px">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+                        Tambah Siswa
+                    </button>
+<button class="flex items-center gap-xs px-md py-sm bg-white text-primary rounded-lg border border-outline-variant font-label-md text-label-md hover:bg-surface-container transition-colors active:translate-y-px">
+<span class="material-symbols-outlined text-lg" data-icon="upload_file">upload_file</span>
+                        Import Excel
+                    </button>
+<button class="flex items-center gap-xs px-md py-sm bg-white text-primary rounded-lg border border-outline-variant font-label-md text-label-md hover:bg-surface-container transition-colors active:translate-y-px">
+<span class="material-symbols-outlined text-lg" data-icon="qr_code_scanner">qr_code_scanner</span>
+                        Download Kartu Barcode
+                    </button>
+</div>
+</div>
+<!-- Content Card (Bento/Glassy hint) -->
+<div class="bg-white rounded-xl table-shadow border border-[#F1F5F9] overflow-hidden flex flex-col">
+<!-- Filters Bar -->
+<div class="p-lg border-b border-[#F1F5F9] flex flex-col md:flex-row gap-md items-center justify-between bg-white">
+<div class="relative w-full md:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg" data-icon="search">search</span>
+<input class="w-full pl-10 pr-md py-2 border border-[#E2E8F0] rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary-fixed/50 transition-all bg-white placeholder:text-outline-variant" placeholder="Cari nama, NIS..." type="text"/>
+</div>
+<div class="flex gap-sm w-full md:w-auto">
+<select class="border border-[#E2E8F0] rounded-lg px-md py-2 font-body-sm text-body-sm text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary-fixed/50 transition-all cursor-pointer min-w-[120px]">
+<option value="">Semua Kelas</option>
+<option value="7">Kelas 7</option>
+<option value="8">Kelas 8</option>
+<option value="9">Kelas 9</option>
+</select>
+<select class="border border-[#E2E8F0] rounded-lg px-md py-2 font-body-sm text-body-sm text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary-fixed/50 transition-all cursor-pointer min-w-[120px]">
+<option value="">Semua Status</option>
+<option value="aktif">Aktif</option>
+<option value="nonaktif">Nonaktif</option>
+</select>
+</div>
+</div>
+<!-- Table Area -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[1000px]">
+<thead>
+<tr class="bg-[#F8FAFC] border-b border-[#E2E8F0] font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<th class="p-md w-12 text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary-fixed cursor-pointer" type="checkbox"/>
+</th>
+<th class="p-md font-medium">Foto</th>
+<th class="p-md font-medium">Nama</th>
+<th class="p-md font-medium">NIS</th>
+<th class="p-md font-medium">Kelas</th>
+<th class="p-md font-medium">Jenis Kelamin</th>
+<th class="p-md font-medium">Barcode ID</th>
+<th class="p-md font-medium">Status</th>
+<th class="p-md font-medium text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface divide-y divide-[#F1F5F9]">
+<!-- Row 1 -->
+<tr class="hover:bg-[#EFF6FF]/50 transition-colors group">
+<td class="p-md text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary-fixed cursor-pointer" type="checkbox"/>
+</td>
+<td class="p-md">
+<img alt="Avatar Budi" class="w-10 h-10 rounded-full object-cover border border-outline-variant/20" data-alt="A small, professional headshot photo of an Indonesian male junior high school student wearing a white uniform with a red tie. Neutral bright background. Bright lighting. Minimalist style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlFPU7wKep1sO0IK5kYq6KiES_02vktvlUYRu9E-zNkj9ypmHvkGuW4Maau6seqLsMkKKAGA-xsj16wh9kqhc_iiC8i91YloXIbrTh8k0Xux8M3_eZK2DnBkQayn5OcLQSDbgyZjTzP19PHuFlH4ruEeLybJhswiN-t5n2RsEJ0KNWgq4SztXJEBqKsz9GK3wUTzGVZKVxvOIZVjHiMes0mjm0YcMbZWj56qFwvQJ8BRbcbTVpPPXqEg"/>
+</td>
+<td class="p-md font-medium text-primary">Budi Santoso</td>
+<td class="p-md text-on-surface-variant">2023001</td>
+<td class="p-md">9A</td>
+<td class="p-md text-on-surface-variant">Laki-laki</td>
+<td class="p-md font-mono text-xs text-on-surface-variant">BC-9A-001</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-secondary-fixed/30 text-primary-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mr-1.5"></span>
+                                        Aktif
+                                    </span>
+</td>
+<td class="p-md text-right">
+<div class="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container transition-colors" title="View">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error rounded-md hover:bg-error-container/50 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-[#EFF6FF]/50 transition-colors group">
+<td class="p-md text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary-fixed cursor-pointer" type="checkbox"/>
+</td>
+<td class="p-md">
+<img alt="Avatar Siti" class="w-10 h-10 rounded-full object-cover border border-outline-variant/20" data-alt="A small, professional headshot photo of an Indonesian female junior high school student wearing a white uniform and a neat white hijab. Neutral bright background. Bright lighting. Minimalist style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPilX4ypV-afZXyiAIRs3rRAM4BqUgi3dm_ygxplcaHgM_nwaQqA5JcMqaldYBR7eBAqZfvLZJ3vQHaWmoNYSJw9JfWXaYCaVsOF8H0GNCnE43Fe9oqgojIO24gaecpazo4Bf64MMZ7638ZtE2n6u4Ofy_BqJsd1lcngZ3kWFngVupRf9Li1J39vDhP-GImH1XKfbJhk4HxDRrQg8kZpGHMI9twEDIuSaB5a9BVTz5Whwk6tCkNSpDuQ"/>
+</td>
+<td class="p-md font-medium text-primary">Siti Aminah</td>
+<td class="p-md text-on-surface-variant">2023002</td>
+<td class="p-md">8B</td>
+<td class="p-md text-on-surface-variant">Perempuan</td>
+<td class="p-md font-mono text-xs text-on-surface-variant">BC-8B-012</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-secondary-fixed/30 text-primary-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mr-1.5"></span>
+                                        Aktif
+                                    </span>
+</td>
+<td class="p-md text-right">
+<div class="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container transition-colors" title="View">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error rounded-md hover:bg-error-container/50 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-[#EFF6FF]/50 transition-colors group">
+<td class="p-md text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary-fixed cursor-pointer" type="checkbox"/>
+</td>
+<td class="p-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold text-lg border border-outline-variant/20">A</div>
+</td>
+<td class="p-md font-medium text-primary">Andi Wijaya</td>
+<td class="p-md text-on-surface-variant">2023003</td>
+<td class="p-md">7C</td>
+<td class="p-md text-on-surface-variant">Laki-laki</td>
+<td class="p-md font-mono text-xs text-on-surface-variant">BC-7C-005</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-surface-variant text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-outline mr-1.5"></span>
+                                        Nonaktif
+                                    </span>
+</td>
+<td class="p-md text-right">
+<div class="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container transition-colors" title="View">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error rounded-md hover:bg-error-container/50 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-[#EFF6FF]/50 transition-colors group">
+<td class="p-md text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary-fixed cursor-pointer" type="checkbox"/>
+</td>
+<td class="p-md">
+<img alt="Avatar Rina" class="w-10 h-10 rounded-full object-cover border border-outline-variant/20" data-alt="A small, professional headshot photo of an Indonesian female junior high school student wearing a white uniform with a red tie. Short black hair. Neutral bright background. Bright lighting. Minimalist style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5eW28qibjt6ErqBMVjEuNgikbPZA7iKPryds5UofSZiw4rpR9eFAyn4HOglxTpaJXEeiNwtJIul7KXUX0OH_CWK_HYgMVUxFnygKOPOmaOCzp9VxPt3eucADag3MObigfXnamHS8WtVcP5X1eJ6nHaDKNpXHCN5wHh_Sdesv9N605CcEH3U9ybrIq_bleKZonpPM2oBqHvmdFYKTGNYXNEdcgRRf-Lf6UPFHmHoeVwgh1AReLy_imcw"/>
+</td>
+<td class="p-md font-medium text-primary">Rina Kusuma</td>
+<td class="p-md text-on-surface-variant">2023004</td>
+<td class="p-md">9B</td>
+<td class="p-md text-on-surface-variant">Perempuan</td>
+<td class="p-md font-mono text-xs text-on-surface-variant">BC-9B-021</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-secondary-fixed/30 text-primary-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mr-1.5"></span>
+                                        Aktif
+                                    </span>
+</td>
+<td class="p-md text-right">
+<div class="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container transition-colors" title="View">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error rounded-md hover:bg-error-container/50 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-[#EFF6FF]/50 transition-colors group">
+<td class="p-md text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary-fixed cursor-pointer" type="checkbox"/>
+</td>
+<td class="p-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim text-on-primary-fixed flex items-center justify-center font-bold text-lg border border-outline-variant/20">D</div>
+</td>
+<td class="p-md font-medium text-primary">Deni Pratama</td>
+<td class="p-md text-on-surface-variant">2023005</td>
+<td class="p-md">8A</td>
+<td class="p-md text-on-surface-variant">Laki-laki</td>
+<td class="p-md font-mono text-xs text-on-surface-variant">BC-8A-008</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-secondary-fixed/30 text-primary-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mr-1.5"></span>
+                                        Aktif
+                                    </span>
+</td>
+<td class="p-md text-right">
+<div class="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container transition-colors" title="View">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error rounded-md hover:bg-error-container/50 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination (Placeholder) -->
+<div class="p-md border-t border-[#F1F5F9] flex items-center justify-between bg-white text-body-sm text-on-surface-variant">
+<span>Menampilkan 1-5 dari 120 siswa</span>
+<div class="flex gap-xs">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-secondary bg-secondary-fixed/30 text-primary font-medium">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

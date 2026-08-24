@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - SimCoding</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f1f0f5",
+                        "on-primary-fixed": "#001a41",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#dad9de",
+                        "surface-container": "#efedf2",
+                        "inverse-primary": "#adc6ff",
+                        "tertiary-fixed": "#ffdbc7",
+                        "on-tertiary-fixed": "#311300",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "background": "#faf9fd",
+                        "primary": "#00183d",
+                        "on-primary-container": "#7d96cb",
+                        "on-surface": "#1a1b1f",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-surface-variant": "#44474f",
+                        "on-background": "#1a1b1f",
+                        "inverse-surface": "#2f3034",
+                        "on-secondary-fixed-variant": "#214582",
+                        "secondary-container": "#9bbbff",
+                        "secondary-fixed": "#d8e2ff",
+                        "secondary": "#3c5e9b",
+                        "tertiary": "#2e1200",
+                        "primary-fixed-dim": "#adc6ff",
+                        "primary-container": "#0f2d5c",
+                        "outline-variant": "#c4c6d0",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e9e7ec",
+                        "on-error-container": "#93000a",
+                        "outline": "#747780",
+                        "on-secondary-fixed": "#001a41",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#2c4676",
+                        "surface-container-highest": "#e3e2e6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#faf9fd",
+                        "on-tertiary-fixed-variant": "#6c3a14",
+                        "on-secondary-container": "#264a86",
+                        "surface-variant": "#e3e2e6",
+                        "surface-tint": "#455e90",
+                        "tertiary-container": "#4e2200",
+                        "surface-bright": "#faf9fd",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f4f3f8",
+                        "primary-fixed": "#d8e2ff",
+                        "tertiary-fixed-dim": "#ffb688",
+                        "on-tertiary-container": "#c9865b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "container-max": "1280px",
+                        "md": "16px",
+                        "2xl": "48px",
+                        "3xl": "64px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex items-center justify-center">
+<div class="w-full min-h-screen flex flex-col lg:flex-row">
+<!-- Left Side: Visual / Shader -->
+<div class="relative hidden lg:flex lg:w-1/2 bg-primary overflow-hidden items-center justify-center">
+<!-- STITCH_SHADER_START:ANIMATION_2 class="absolute inset-0 w-full h-full opacity-60" -->
+<div class="absolute inset-0 w-full h-full opacity-60" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_2" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_2');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+varying vec2 v_texCoord;
+
+// Simple noise function
+float noise(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+}
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Background base color (Primary Dark Blue: #0F2D5C -> vec3(0.058, 0.176, 0.361))
+    vec3 color1 = vec3(0.058, 0.176, 0.361);
+    // Secondary Navy: #173E7A -> vec3(0.09, 0.243, 0.478)
+    vec3 color2 = vec3(0.09, 0.243, 0.478);
+    
+    // Subtle flowing movement
+    float t = u_time * 0.2;
+    float n = noise(uv * 3.0 + t);
+    
+    // Create soft, moving waves
+    float wave = sin(uv.x * 5.0 + t) * cos(uv.y * 3.0 - t) * 0.5 + 0.5;
+    vec3 finalColor = mix(color1, color2, wave * 0.5);
+    
+    // Add subtle brightness variations
+    finalColor += noise(uv * 10.0 + t) * 0.02;
+    
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_2 -->
+<!-- Overlay Image -->
+<div class="relative z-10 w-4/5 max-w-lg aspect-square">
+<img class="w-full h-full object-contain drop-shadow-2xl" data-alt="An elegant, modern vector illustration set against a deep blue primary background, depicting two students engaged in coding. One is a female student wearing a hijab, and the other is a male student. They are collaboratively using computers, surrounded by abstract, floating block-based visual programming elements that suggest educational technology. The style is premium, clean, and professional, avoiding neon colors to fit a modern educational SaaS platform aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTVRjV0DrqyqPwqbwgR47gpg1EBYanpnSWa9gUZ1G0tlY_p9c_u9IkDRGJueEwzZ4CGhjp1UubovT8I_LKve3McNxzmaQg9TIQf_E5e9JGba_Qq6BOBZOpaAxuoSFSe0YMhtWboSalTCYL-twQU0MXZImR10Et9EgLxqoztB_XZYXu_YSsC8kSuCVwm3KWlX-gMk4mKS6hUrZKVa112lg3No6EyD1GLsVzrUJt6ELxmj4Lwl8by_YO2A"/>
+</div>
+<div class="absolute bottom-lg left-lg text-on-primary max-w-md z-10">
+<p class="font-label-md text-label-md text-on-primary/80 mb-sm">Platform Edukasi Terpadu</p>
+<p class="font-body-lg text-body-lg font-light leading-relaxed">SimCoding - Kelola Ekskul Coding Lebih Mudah, Modern, dan Terukur</p>
+</div>
+</div>
+<!-- Right Side: Login Form -->
+<div class="w-full lg:w-1/2 flex items-center justify-center p-md sm:p-lg lg:p-2xl bg-surface-container-lowest relative z-20">
+<div class="w-full max-w-md">
+<!-- Logo & Header -->
+<div class="mb-xl text-center lg:text-left">
+<div class="flex items-center justify-center lg:justify-start gap-sm mb-lg">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary">SimCoding</h1>
+</div>
+<h2 class="font-headline-lg-mobile lg:font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface mb-sm">Selamat Datang di SimCoding</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Sistem Informasi Ekstrakurikuler Coding untuk Guru dan Siswa</p>
+</div>
+<!-- Role Selector Tabs -->
+<div class="flex p-1 bg-surface-container rounded-lg mb-lg">
+<button class="flex-1 py-2 font-label-md text-label-md text-primary bg-surface-container-lowest shadow-sm rounded-md transition-all">
+                        Admin / Guru
+                    </button>
+<button class="flex-1 py-2 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all rounded-md">
+                        Siswa
+                    </button>
+</div>
+<!-- Form -->
+<form class="space-y-lg">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-sm" for="email">Email atau Username</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</span>
+<input class="block w-full pl-10 pr-3 py-3 border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface focus:ring-2 focus:ring-secondary-container focus:border-primary transition-all font-body-md text-body-md" id="email" name="email" placeholder="Masukkan email atau username" type="text"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-sm" for="password">Password</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</span>
+<input class="block w-full pl-10 pr-10 py-3 border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface focus:ring-2 focus:ring-secondary-container focus:border-primary transition-all font-body-md text-body-md" id="password" name="password" placeholder="Masukkan password" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<input class="h-4 w-4 text-primary focus:ring-secondary-container border-outline-variant rounded bg-surface-container-lowest" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block font-body-sm text-body-sm text-on-surface-variant" for="remember-me">
+                                Remember me
+                            </label>
+</div>
+<div class="text-sm">
+<a class="font-label-md text-label-md text-primary hover:text-primary-container transition-colors" href="#">
+                                Lupa Password?
+                            </a>
+</div>
+</div>
+<div>
+<button class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm font-label-md text-label-md text-on-primary bg-secondary hover:bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-container active:scale-[0.98]" type="submit">
+                            Masuk
+                        </button>
+</div>
+</form>
+<div class="mt-xl text-center lg:hidden">
+<p class="font-body-sm text-body-sm text-on-surface-variant">SimCoding - Kelola Ekskul Coding Lebih Mudah, Modern, dan Terukur</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

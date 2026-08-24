@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tugas Saya - SimCoding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-primary": "#adc6ff",
+                      "error-container": "#ffdad6",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed": "#001a41",
+                      "surface-bright": "#faf9fd",
+                      "on-secondary-container": "#264a86",
+                      "primary": "#00183d",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#1a1b1f",
+                      "on-tertiary-container": "#c9865b",
+                      "on-error": "#ffffff",
+                      "surface-tint": "#455e90",
+                      "primary-fixed-dim": "#adc6ff",
+                      "outline": "#747780",
+                      "tertiary-container": "#4e2200",
+                      "secondary-fixed": "#d8e2ff",
+                      "secondary-container": "#9bbbff",
+                      "on-tertiary-fixed": "#311300",
+                      "on-primary": "#ffffff",
+                      "on-surface-variant": "#44474f",
+                      "outline-variant": "#c4c6d0",
+                      "primary-container": "#0f2d5c",
+                      "on-primary-container": "#7d96cb",
+                      "tertiary-fixed": "#ffdbc7",
+                      "surface-dim": "#dad9de",
+                      "primary-fixed": "#d8e2ff",
+                      "surface-container-low": "#f4f3f8",
+                      "surface-container-highest": "#e3e2e6",
+                      "surface": "#faf9fd",
+                      "secondary": "#3c5e9b",
+                      "on-primary-fixed-variant": "#2c4676",
+                      "tertiary": "#2e1200",
+                      "on-secondary-fixed-variant": "#214582",
+                      "inverse-surface": "#2f3034",
+                      "tertiary-fixed-dim": "#ffb688",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "on-primary-fixed": "#001a41",
+                      "surface-container-high": "#e9e7ec",
+                      "surface-container": "#efedf2",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f1f0f5",
+                      "on-background": "#1a1b1f",
+                      "surface-variant": "#e3e2e6",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#6c3a14",
+                      "background": "#faf9fd",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sidebar-width": "260px",
+                      "2xl": "48px",
+                      "md": "16px",
+                      "container-max": "1280px",
+                      "sm": "8px",
+                      "3xl": "64px",
+                      "gutter": "24px",
+                      "base": "4px",
+                      "xl": "32px",
+                      "lg": "24px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "60px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #EFF6FF; /* Soft Blue level 0 */
+            color: #1a1b1f; /* on-surface */
+        }
+        .canvas-card {
+            background-color: #ffffff;
+            border: 1px solid #F1F5F9;
+            box-shadow: 0px 1px 3px rgba(15, 45, 92, 0.05), 0px 10px 20px rgba(15, 45, 92, 0.02);
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar (Simulated Student view - matching Shared Components JSON but for student context) -->
+<nav class="w-sidebar-width h-screen fixed left-0 top-0 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-fixed font-body-md text-body-md flex flex-col h-full py-lg no shadows flat no shadows z-20">
+<div class="px-lg mb-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-on-primary">SimCoding</span>
+<div class="flex items-center mt-md">
+<img alt="SimCoding Student Avatar" class="w-10 h-10 rounded-full bg-surface-container-highest" data-alt="A small circular avatar placeholder image for a generic student user profile, rendered in a crisp, minimalist vector style. It features a simple silhouetted figure on a soft pastel background, matching the clean and professional SaaS aesthetic of the educational platform. Lighting is flat and uniform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_7BN1QgZD0vcl_zRq8xsO-_6r_rw3xWQhvO71oB8zDxvKcvo6X-OUDqXcxSWSvQkSbgPpuKQO2TveSwBvF_WaoCKOVOSr1ij7Hsbb2nQFSMD3UDUR7G5Fx_fjuGCyw0VgKjfV6QUQi98QLX4PsqUrWccaD_-0N4Bk5csfZiJXH5lmL97DdJ3ZUd9dR-Wz45GSfaymJSMLD5UATwL6cn64qniC4Q81apsxdDrjTEhd1ID_6K3fK2Eziw"/>
+<div class="ml-sm">
+<p class="font-label-md text-label-md font-bold">Student Name</p>
+<p class="font-label-sm text-label-sm text-on-primary-fixed-variant">Student Portal</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col flex-1 px-sm space-y-1">
+<a class="flex items-center px-md py-sm rounded-lg text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors" href="#">
+<span class="material-symbols-outlined mr-sm" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                Dashboard
+            </a>
+<!-- Using intent fallback: "Tugas Siswa" -> Student Assignment List -->
+<a class="flex items-center px-md py-sm rounded-lg text-on-primary border-l-2 border-secondary-container bg-surface-container-highest/10 font-bold hover:bg-primary-fixed-dim/20 transition-colors scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-sm" style="font-variation-settings: 'FILL' 1;">assignment</span>
+                Tugas Siswa
+            </a>
+<a class="flex items-center px-md py-sm rounded-lg text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors" href="#">
+<span class="material-symbols-outlined mr-sm" style="font-variation-settings: 'FILL' 0;">analytics</span>
+                Penilaian
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 ml-sidebar-width flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-dim text-primary dark:text-inverse-primary font-label-md text-label-md docked full-width top-0 border-b border-outline-variant shadow-sm flex justify-between items-center w-full px-lg h-16 z-10 shrink-0">
+<div class="flex items-center">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-on-primary-fixed mr-xl">Tugas Saya</span>
+</div>
+<div class="flex items-center space-x-md">
+<button class="relative p-sm rounded-full hover:bg-surface-container-highest transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full ring-2 ring-surface"></span>
+</button>
+<img alt="User Profile" class="w-8 h-8 rounded-full bg-surface-container-highest" data-alt="A small circular avatar placeholder image for a generic user profile, matching the clean and professional SaaS aesthetic. Soft lighting, neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjaryVBJfwNRMblXlzSwFaKd69-FA3SGMM88mbIvguZANVtKWlPtfk96bD1B05kdKhGRqaKiPbVmmyCxYgVPUhBDqs2xhiIoVLXQMTcq0v4XhD-utv3ek-foxIvw8FoUXW3-kIOvJsaHta-WCcusQnBfvx3H36QsMuQ8i7KP1JZuJgnd1rTBJ6y3H23zX4zCDDVpDgJ12XvinFOxhbqAgxd-AY4ZJSobKWeEnYjKC1DVZVAF2v0Rsmiw"/>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-lg">
+<div class="max-w-container-max mx-auto space-y-lg">
+<!-- Filters -->
+<div class="flex items-center space-x-sm border-b border-surface-variant pb-sm">
+<button class="px-md py-sm rounded-full bg-primary text-on-primary font-label-md text-label-md transition-colors">Semua</button>
+<button class="px-md py-sm rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-colors border border-outline-variant">Belum Selesai</button>
+<button class="px-md py-sm rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-colors border border-outline-variant">Sudah Dinilai</button>
+</div>
+<!-- Assignment List (Bento Grid Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1: Due soon (Warning) -->
+<div class="canvas-card rounded-xl p-lg flex flex-col relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute top-0 left-0 w-1 h-full bg-error-container"></div>
+<div class="flex justify-between items-start mb-md">
+<span class="px-sm py-xs bg-surface-container rounded font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Modul 3</span>
+<span class="px-sm py-xs bg-error-container/20 text-error rounded-full font-label-sm text-label-sm flex items-center">
+<span class="material-symbols-outlined text-[14px] mr-xs" style="font-variation-settings: 'FILL' 1;">warning</span>
+                                Hari ini, 23:59
+                            </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-sm">Array and Objects</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-lg flex-1">Implementasi struktur data array dan manipulasi objek dasar dalam JavaScript.</p>
+<div class="flex items-center justify-between mt-auto pt-md border-t border-surface-variant">
+<div class="flex items-center">
+<span class="w-2 h-2 rounded-full bg-outline mr-sm"></span>
+<span class="font-label-md text-label-md text-outline">Belum dikerjakan</span>
+</div>
+<button class="px-md py-sm bg-primary text-on-primary rounded font-label-md text-label-md border-t border-white/20 hover:bg-primary-container transition-colors">Kerjakan</button>
+</div>
+</div>
+<!-- Card 2: Waiting Assessment -->
+<div class="canvas-card rounded-xl p-lg flex flex-col relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-container"></div>
+<div class="flex justify-between items-start mb-md">
+<span class="px-sm py-xs bg-surface-container rounded font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Modul 2</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Kemarin</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-sm">Control Flow &amp; Loops</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-lg flex-1">Penggunaan IF/ELSE dan perulangan FOR/WHILE untuk logika program.</p>
+<div class="flex items-center justify-between mt-auto pt-md border-t border-surface-variant">
+<div class="flex items-center">
+<span class="w-2 h-2 rounded-full bg-secondary mr-sm"></span>
+<span class="font-label-md text-label-md text-secondary">Menunggu Penilaian</span>
+</div>
+<button class="px-md py-sm bg-surface text-primary border border-outline-variant rounded font-label-md text-label-md hover:bg-surface-variant transition-colors">Lihat Detail</button>
+</div>
+</div>
+<!-- Card 3: Completed -->
+<div class="canvas-card rounded-xl p-lg flex flex-col relative overflow-hidden group hover:shadow-md transition-shadow opacity-75">
+<div class="absolute top-0 left-0 w-1 h-full bg-surface-variant"></div>
+<div class="flex justify-between items-start mb-md">
+<span class="px-sm py-xs bg-surface-container rounded font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Modul 1</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">12 Okt</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-sm line-through decoration-outline-variant">Pengenalan Variabel</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-lg flex-1">Dasar-dasar deklarasi variabel menggunakan let, const, dan var.</p>
+<div class="flex items-center justify-between mt-auto pt-md border-t border-surface-variant">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-outline text-[16px] mr-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md text-label-md text-outline">Selesai (Nilai: 95)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

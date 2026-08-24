@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Presensi Digital - SimCoding Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#adc6ff",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#001a41",
+                        "surface-bright": "#faf9fd",
+                        "on-secondary-container": "#264a86",
+                        "primary": "#00183d",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#1a1b1f",
+                        "on-tertiary-container": "#c9865b",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#455e90",
+                        "primary-fixed-dim": "#adc6ff",
+                        "outline": "#747780",
+                        "tertiary-container": "#4e2200",
+                        "secondary-fixed": "#d8e2ff",
+                        "secondary-container": "#9bbbff",
+                        "on-tertiary-fixed": "#311300",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#44474f",
+                        "outline-variant": "#c4c6d0",
+                        "primary-container": "#0f2d5c",
+                        "on-primary-container": "#7d96cb",
+                        "tertiary-fixed": "#ffdbc7",
+                        "surface-dim": "#dad9de",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-container-low": "#f4f3f8",
+                        "surface-container-highest": "#e3e2e6",
+                        "surface": "#faf9fd",
+                        "secondary": "#3c5e9b",
+                        "on-primary-fixed-variant": "#2c4676",
+                        "tertiary": "#2e1200",
+                        "on-secondary-fixed-variant": "#214582",
+                        "inverse-surface": "#2f3034",
+                        "tertiary-fixed-dim": "#ffb688",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-primary-fixed": "#001a41",
+                        "surface-container-high": "#e9e7ec",
+                        "surface-container": "#efedf2",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f1f0f5",
+                        "on-background": "#1a1b1f",
+                        "surface-variant": "#e3e2e6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#6c3a14",
+                        "background": "#faf9fd",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-width": "260px",
+                        "2xl": "48px",
+                        "md": "16px",
+                        "container-max": "1280px",
+                        "sm": "8px",
+                        "3xl": "64px",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-lg bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-fixed font-body-md text-body-md w-sidebar-width h-screen fixed left-0 top-0 no shadows z-20">
+<div class="px-lg mb-xl">
+<div class="flex items-center gap-md">
+<img alt="SimCoding Admin Avatar" class="w-10 h-10 rounded-full bg-surface-container" data-alt="A small, professional circular avatar showing an abstract geometric logo representing an educational admin portal. The logo uses deep blues and crisp whites, conveying trust, structure, and modernity in a light-mode setting. High contrast, sharp details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQRoR4q4AsPtHOJKSQKmAe1FTnIH04AZMELKdNyEukdBYL2EME7fBgy9nVmqiG6HQAoDkgdLgV6tWYz100dDfHkl__C2uoKGk6qgsNRBN0bFqsNd_EKTnIdWpEMZjJigC-ig24WdZrGmZ6DGQ_NTPNY7qXgIUfnyLHr4KH0JBF42D8Sm_I67Sxf958JaU_eQ4RkDMMhNYUNsnlN4aaeoPIm-BiMpGPSMwYyBtQvI2_BQHbO2Wykq8kiA"/>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-primary">SimCoding Admin</h1>
+<p class="font-label-sm text-label-sm text-on-primary-fixed-variant">Administrator Portal</p>
+</div>
+</div>
+</div>
+<ul class="flex-1 space-y-sm px-sm overflow-y-auto">
+<li><a class="flex items-center gap-md px-md py-sm rounded-md text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors" href="#"><span class="material-symbols-outlined">dashboard</span>Dashboard</a></li>
+<li><a class="flex items-center gap-md px-md py-sm rounded-md text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors" href="#"><span class="material-symbols-outlined">group</span>Data Siswa</a></li>
+<li><a class="flex items-center gap-md px-md py-sm rounded-md text-on-primary border-l-2 border-secondary-container bg-surface-container-highest/10 font-bold active:scale-98 transition-all duration-200" href="#"><span class="material-symbols-outlined">fingerprint</span>Presensi Digital</a></li>
+<li><a class="flex items-center gap-md px-md py-sm rounded-md text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors" href="#"><span class="material-symbols-outlined">assignment</span>Tugas Siswa</a></li>
+<li><a class="flex items-center gap-md px-md py-sm rounded-md text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors" href="#"><span class="material-symbols-outlined">analytics</span>Penilaian</a></li>
+<li><a class="flex items-center gap-md px-md py-sm rounded-md text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors" href="#"><span class="material-symbols-outlined">description</span>Rapor</a></li>
+<li><a class="flex items-center gap-md px-md py-sm rounded-md text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors" href="#"><span class="material-symbols-outlined">summarize</span>Rekapitulasi</a></li>
+<li><a class="flex items-center gap-md px-md py-sm rounded-md text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors" href="#"><span class="material-symbols-outlined">settings</span>Pengaturan</a></li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-sidebar-width min-w-0">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-lg h-16 bg-surface dark:bg-surface-dim text-primary dark:text-inverse-primary font-label-md text-label-md docked full-width top-0 border-b border-outline-variant shadow-sm z-10 sticky">
+<div class="flex items-center gap-md">
+<button class="md:hidden p-sm hover:bg-surface-variant rounded-full transition-colors"><span class="material-symbols-outlined">menu</span></button>
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-on-primary-fixed">SimCoding</div>
+<div class="hidden md:flex ml-xl relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary text-body-sm font-body-sm" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-sm hover:text-primary transition-colors text-on-surface-variant font-medium hover:bg-surface-variant rounded-full"><span class="material-symbols-outlined">notifications</span></button>
+<button class="p-sm hover:text-primary transition-colors text-on-surface-variant font-medium hover:bg-surface-variant rounded-full"><span class="material-symbols-outlined">help</span></button>
+<img alt="User Profile" class="w-8 h-8 rounded-full ml-sm object-cover" data-alt="A small, professional circular avatar showing a friendly administrative staff member in a bright, modern office setting. Light mode, soft natural lighting, high resolution, clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjtyXGwqYBFaUkji9FvCWrQFtT4whfJdiieMfGgbJcbSLPYeW9m0fbabxsGorRDCEXWhDk0RNzUho5ZGWtdclcJubhk08woJOMQYqUq4LrOuDuuUgfZqatQcdkOUq6qL4xwBg2PhQItw5cP4xBYKPSMHavHoFE_YdlRIfOfY9zCg6P0TcJgpYoBIRXgl0ZzrF0KOJcZDJQ9JNDNk5e3O9NqyCZkfYVtv07Hz9SwPl7QP7FPGM4UpZheg"/>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="p-4 md:p-gutter flex-1 bg-background overflow-y-auto">
+<div class="mb-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Presensi Digital</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Kelola dan pantau kehadiran siswa secara real-time.</p>
+</div>
+<div class="flex gap-sm">
+<button class="bg-surface text-primary border border-outline-variant font-label-md text-label-md px-md py-sm rounded flex items-center gap-2 hover:bg-surface-variant transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">edit_note</span> Edit Manual
+                    </button>
+<button class="bg-secondary text-on-secondary font-label-md text-label-md px-md py-sm rounded flex items-center gap-2 hover:bg-secondary/90 transition-colors shadow-sm border-t border-white/20">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span> Export PDF
+                    </button>
+</div>
+</div>
+<!-- Tabs -->
+<div class="border-b border-outline-variant mb-lg">
+<nav class="-mb-px flex space-x-xl overflow-x-auto">
+<a class="border-transparent text-on-surface-variant hover:text-on-surface hover:border-outline-variant whitespace-nowrap py-sm px-1 border-b-2 font-label-md text-label-md flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">qr_code_scanner</span> Scan Barcode
+                    </a>
+<a class="border-transparent text-on-surface-variant hover:text-on-surface hover:border-outline-variant whitespace-nowrap py-sm px-1 border-b-2 font-label-md text-label-md flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">face</span> Scan Wajah
+                    </a>
+<a class="border-primary text-primary whitespace-nowrap py-sm px-1 border-b-2 font-label-md text-label-md flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">list_alt</span> Rekap Presensi
+                    </a>
+</nav>
+</div>
+<!-- Content Canvas (White Card) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_1px_3px_rgba(15,45,92,0.05),_0px_10px_20px_rgba(15,45,92,0.02)] border border-[#F1F5F9] p-lg">
+<!-- Filters -->
+<div class="flex flex-col md:flex-row gap-4 mb-lg">
+<div class="flex-1">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Tanggal</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">calendar_today</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface border border-[#E2E8F0] rounded focus:ring-2 focus:ring-primary/20 focus:border-primary font-body-sm text-body-sm text-on-surface" type="text" value="Hari ini, 24 Okt 2023"/>
+</div>
+</div>
+<div class="w-full md:w-48">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Kelas</label>
+<select class="w-full px-4 py-2 bg-surface border border-[#E2E8F0] rounded focus:ring-2 focus:ring-primary/20 focus:border-primary font-body-sm text-body-sm text-on-surface appearance-none">
+<option>Semua Kelas</option>
+<option>X RPL 1</option>
+<option>X RPL 2</option>
+</select>
+</div>
+<div class="w-full md:w-48">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Status</label>
+<select class="w-full px-4 py-2 bg-surface border border-[#E2E8F0] rounded focus:ring-2 focus:ring-primary/20 focus:border-primary font-body-sm text-body-sm text-on-surface appearance-none">
+<option>Semua Status</option>
+<option>Hadir</option>
+<option>Terlambat</option>
+<option>Absen</option>
+</select>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto border border-[#E2E8F0] rounded-lg">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-[#E2E8F0]">
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Nama Siswa</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Kelas</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Tanggal</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Waktu Masuk</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Metode</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y divide-[#E2E8F0]">
+<tr class="hover:bg-[#EFF6FF] transition-colors min-h-[56px] group">
+<td class="py-3 px-4 font-medium text-on-surface">Ahmad Rizky</td>
+<td class="py-3 px-4 text-on-surface-variant">X RPL 1</td>
+<td class="py-3 px-4 text-on-surface-variant">24/10/2023</td>
+<td class="py-3 px-4 text-on-surface-variant">06:45</td>
+<td class="py-3 px-4 text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">qr_code_2</span> Barcode</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#E8F5E9] text-[#1B5E20]">Hadir</span>
+</td>
+</tr>
+<tr class="hover:bg-[#EFF6FF] transition-colors min-h-[56px] group">
+<td class="py-3 px-4 font-medium text-on-surface">Budi Santoso</td>
+<td class="py-3 px-4 text-on-surface-variant">X RPL 1</td>
+<td class="py-3 px-4 text-on-surface-variant">24/10/2023</td>
+<td class="py-3 px-4 text-on-surface-variant">07:15</td>
+<td class="py-3 px-4 text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">face</span> Wajah</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#FFF3E0] text-[#E65100]">Terlambat</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Empty State (Hidden by default, shown for example) -->
+<div class="mt-lg hidden flex flex-col items-center justify-center py-12 text-center border border-dashed border-outline-variant rounded-lg bg-surface-container-lowest">
+<div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-3xl">search_off</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-2">Data presensi tidak ditemukan</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Silakan ubah filter pencarian Anda atau pastikan rentang tanggal sudah benar.</p>
+</div>
+</div>
+</main>
+</div>
+</body></html>

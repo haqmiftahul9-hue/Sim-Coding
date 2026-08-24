@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard Admin - SimCoding</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-on-surface": "#f1f0f5",
+                      "on-primary-fixed": "#001a41",
+                      "on-error": "#ffffff",
+                      "surface-dim": "#dad9de",
+                      "surface-container": "#efedf2",
+                      "inverse-primary": "#adc6ff",
+                      "tertiary-fixed": "#ffdbc7",
+                      "on-tertiary-fixed": "#311300",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "background": "#faf9fd",
+                      "primary": "#00183d",
+                      "on-primary-container": "#7d96cb",
+                      "on-surface": "#1a1b1f",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "on-surface-variant": "#44474f",
+                      "on-background": "#1a1b1f",
+                      "inverse-surface": "#2f3034",
+                      "on-secondary-fixed-variant": "#214582",
+                      "secondary-container": "#9bbbff",
+                      "secondary-fixed": "#d8e2ff",
+                      "secondary": "#3c5e9b",
+                      "tertiary": "#2e1200",
+                      "primary-fixed-dim": "#adc6ff",
+                      "primary-container": "#0f2d5c",
+                      "outline-variant": "#c4c6d0",
+                      "on-primary": "#ffffff",
+                      "surface-container-high": "#e9e7ec",
+                      "on-error-container": "#93000a",
+                      "outline": "#747780",
+                      "on-secondary-fixed": "#001a41",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#2c4676",
+                      "surface-container-highest": "#e3e2e6",
+                      "surface-container-lowest": "#ffffff",
+                      "surface": "#faf9fd",
+                      "on-tertiary-fixed-variant": "#6c3a14",
+                      "on-secondary-container": "#264a86",
+                      "surface-variant": "#e3e2e6",
+                      "surface-tint": "#455e90",
+                      "tertiary-container": "#4e2200",
+                      "surface-bright": "#faf9fd",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#f4f3f8",
+                      "primary-fixed": "#d8e2ff",
+                      "tertiary-fixed-dim": "#ffb688",
+                      "on-tertiary-container": "#c9865b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "xl": "32px",
+                      "base": "4px",
+                      "xs": "4px",
+                      "container-max": "1280px",
+                      "md": "16px",
+                      "2xl": "48px",
+                      "3xl": "64px",
+                      "sm": "8px",
+                      "lg": "24px",
+                      "sidebar-width": "260px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "60px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .subtle-shadow {
+            box-shadow: 0px 1px 3px rgba(15, 45, 92, 0.05), 0px 10px 20px rgba(15, 45, 92, 0.02);
+        }
+        .btn-primary-inset {
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+        
+        /* Simple bar chart styles for pure CSS implementation */
+        .bar-chart-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 180px;
+            padding-top: 20px;
+        }
+        .bar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+            width: 100%;
+        }
+        .bar {
+            width: 24px;
+            background-color: #0f2d5c; /* primary-container */
+            border-radius: 4px 4px 0 0;
+            transition: height 0.3s ease;
+        }
+        .bar:hover {
+            background-color: #00183d; /* primary */
+        }
+        .bar-label {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #747780; /* outline */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased flex">
+<!-- SideNavBar -->
+<aside class="bg-primary text-on-primary w-sidebar-width h-screen fixed left-0 top-0 flex flex-col h-full py-lg z-20">
+<!-- Brand/Header -->
+<div class="px-lg mb-8 flex items-center space-x-3">
+<img alt="SimCoding Admin Avatar" class="w-10 h-10 rounded-full bg-primary-container object-cover" data-alt="A small, professional 3D rendered avatar of a male teacher with glasses, wearing a light blue shirt. The style is modern, friendly, and clean, set against a dark blue background to match the dashboard sidebar. The lighting is soft and studio-quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqf2hMxQ6SFX5ZMjnreNEmfPVBlqE-EGkXLHetoE92kAzVZ4EMMBWKJUC_f6P7umuUSLQDftEBXkXlmVfrl3WCgyWTWlbA0G0xLvUDLo6KzGltftJtJseZjOzRL1595kcRU4lndlsQc0ywHgspg2nWBplws8dQLCsAUYw67XY8DW1GdxaZNZztJ1UbKOhnKhYlh2Ou0AoeDERetD0ytuV6fNQkKX0rNqRB4UEelej2aqBtpUgW4Itj8A"/>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-primary">SimCoding Admin</h2>
+<p class="font-body-sm text-body-sm text-on-primary-fixed-variant">Administrator Portal</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 overflow-y-auto w-full px-sm space-y-1">
+<!-- Active Tab: Dashboard -->
+<a class="flex items-center space-x-3 px-3 py-2 text-on-primary border-l-2 border-secondary-container bg-surface-container-highest/10 font-bold transition-all duration-200" href="#" style="transform: scale(0.98);">
+<span class="material-symbols-outlined" data-weight="fill">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="flex items-center space-x-3 px-3 py-2 text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors rounded-r" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Data Siswa</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors rounded-r" href="#">
+<span class="material-symbols-outlined">fingerprint</span>
+<span class="font-body-md text-body-md">Presensi Digital</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors rounded-r" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-body-md text-body-md">Tugas Siswa</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors rounded-r" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Penilaian</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors rounded-r" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-body-md text-body-md">Rapor</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors rounded-r" href="#">
+<span class="material-symbols-outlined">summarize</span>
+<span class="font-body-md text-body-md">Rekapitulasi</span>
+</a>
+<div class="pt-4 mt-4 border-t border-primary-container">
+<a class="flex items-center space-x-3 px-3 py-2 text-on-primary-fixed-variant font-medium hover:bg-primary-fixed-dim/20 transition-colors rounded-r" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Pengaturan</span>
+</a>
+</div>
+</nav>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col ml-[260px] min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface text-primary border-b border-outline-variant shadow-sm w-full top-0 sticky z-10 flex justify-between items-center px-lg h-16">
+<!-- Left: Search / Brand (if mobile, though hidden on desktop by sidebar) -->
+<div class="flex items-center flex-1">
+<div class="relative w-64 max-w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full font-body-sm text-body-sm focus:outline-none focus:border-secondary-container focus:ring-1 focus:ring-secondary-container transition-shadow" placeholder="Cari siswa atau tugas..." type="text"/>
+</div>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center space-x-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small, high-quality portrait photo of an Asian male teacher in his 30s. He looks friendly and professional. The background is a plain light grey. Studio lighting, clean corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2i_sE0uduJc__LGMvpv3MDJUBda7jGncxdXBr_fEQWzDCdjYWGADNU4T3lY1-0IZbSV0PBjijyt1ELAkMEOxBxCDU-QmxnWdWRfXKCMzM1NBCRMb6rYI09df5ITOmSxddO0drl37aUZIaKW-igHdQNPBSRfmNdUbktzV-OPAmgrYSYcDV9Qy_vGwOY098fBhXhFwUW_Azpf2Z-7EjANf8SXwVH8trt7oyPGDezJzNSJOD8swT9qvueA"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas Content -->
+<main class="flex-1 p-lg overflow-y-auto bg-surface-container-low">
+<div class="max-w-container-max mx-auto space-y-gutter">
+<!-- Hero Section -->
+<section class="mb-8">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Selamat Datang, Pak Budi</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Berikut ringkasan aktivitas hari ini.</p>
+</section>
+<!-- Summary Cards (4 columns) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface rounded-lg p-6 subtle-shadow border border-surface-variant flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Total Siswa</h3>
+<div class="p-2 bg-primary-container/10 rounded-full text-primary-container">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+</div>
+</div>
+<div class="font-display-lg text-display-lg text-primary mt-auto">120</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface rounded-lg p-6 subtle-shadow border border-surface-variant flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Kehadiran Hari Ini</h3>
+<div class="p-2 bg-secondary-container/20 rounded-full text-secondary">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+</div>
+<div class="font-display-lg text-display-lg text-primary mt-auto">95<span class="text-2xl">%</span></div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface rounded-lg p-6 subtle-shadow border border-surface-variant flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Tugas Masuk</h3>
+<div class="p-2 bg-primary-container/10 rounded-full text-primary-container">
+<span class="material-symbols-outlined text-[20px]">inbox</span>
+</div>
+</div>
+<div class="font-display-lg text-display-lg text-primary mt-auto">15</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface rounded-lg p-6 subtle-shadow border border-surface-variant flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Tugas Belum Dinilai</h3>
+<div class="p-2 bg-[#ffdad6]/50 rounded-full text-error">
+<span class="material-symbols-outlined text-[20px]">pending_actions</span>
+</div>
+</div>
+<div class="font-display-lg text-display-lg text-primary mt-auto">8</div>
+</div>
+</section>
+<!-- Charts & Actions Row -->
+<section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<!-- Weekly Attendance (2 cols wide on large screens) -->
+<div class="bg-surface rounded-lg p-6 subtle-shadow border border-surface-variant xl:col-span-2">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-sm text-headline-sm text-primary">Tren Kehadiran Mingguan</h2>
+<button class="p-1 text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Pseudo Line Chart Visualization using CSS/SVG for structural layout -->
+<div class="relative w-full h-[220px] bg-surface pt-4">
+<!-- Y-Axis labels -->
+<div class="absolute left-0 top-0 h-full flex flex-col justify-between text-label-sm text-outline pb-6 w-8">
+<span>100%</span>
+<span>80%</span>
+<span>60%</span>
+<span>40%</span>
+<span>20%</span>
+</div>
+<!-- Grid lines -->
+<div class="ml-10 h-full flex flex-col justify-between pb-6">
+<div class="w-full border-t border-surface-variant border-dashed"></div>
+<div class="w-full border-t border-surface-variant border-dashed"></div>
+<div class="w-full border-t border-surface-variant border-dashed"></div>
+<div class="w-full border-t border-surface-variant border-dashed"></div>
+<div class="w-full border-t border-surface-variant"></div>
+</div>
+<!-- SVG Line Graph overlay -->
+<svg class="absolute top-4 left-10 w-[calc(100%-40px)] h-[calc(100%-24px)] overflow-visible" preserveaspectratio="none" viewbox="0 0 100 100">
+<!-- Line -->
+<polyline fill="none" points="0,20 20,10 40,30 60,15 80,5 100,25" stroke="#00183d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polyline>
+<!-- Data points -->
+<circle cx="0" cy="20" fill="#ffffff" r="3" stroke="#00183d" stroke-width="1.5"></circle>
+<circle cx="20" cy="10" fill="#ffffff" r="3" stroke="#00183d" stroke-width="1.5"></circle>
+<circle cx="40" cy="30" fill="#ffffff" r="3" stroke="#00183d" stroke-width="1.5"></circle>
+<circle cx="60" cy="15" fill="#ffffff" r="3" stroke="#00183d" stroke-width="1.5"></circle>
+<circle cx="80" cy="5" fill="#ffffff" r="3" stroke="#00183d" stroke-width="1.5"></circle>
+<circle cx="100" cy="25" fill="#ffffff" r="3" stroke="#00183d" stroke-width="1.5"></circle>
+</svg>
+<!-- X-Axis Labels -->
+<div class="ml-10 mt-2 flex justify-between text-label-sm text-outline px-1">
+<span>Sen</span>
+<span>Sel</span>
+<span>Rab</span>
+<span>Kam</span>
+<span>Jum</span>
+<span>Sab</span>
+</div>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="bg-surface rounded-lg p-6 subtle-shadow border border-surface-variant flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-6">Aksi Cepat</h2>
+<div class="flex flex-col gap-4 flex-1 justify-center">
+<button class="w-full flex items-center justify-center space-x-2 bg-primary text-on-primary py-3 px-4 rounded-lg font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors btn-primary-inset">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+<span>Tambah Siswa</span>
+</button>
+<button class="w-full flex items-center justify-center space-x-2 bg-surface text-primary border border-outline-variant py-3 px-4 rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">post_add</span>
+<span>Buat Tugas</span>
+</button>
+<button class="w-full flex items-center justify-center space-x-2 bg-surface text-primary border border-outline-variant py-3 px-4 rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+<span>Buka Scanner</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Bottom Row: Recent Activity & Submissions Bar Chart -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Recent Activity List -->
+<div class="bg-surface rounded-lg subtle-shadow border border-surface-variant overflow-hidden flex flex-col">
+<div class="p-6 border-b border-surface-variant bg-surface flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-primary">Aktivitas Terkini</h2>
+<a class="font-label-sm text-label-sm text-secondary hover:underline" href="#">Lihat Semua</a>
+</div>
+<div class="flex-1 overflow-y-auto">
+<!-- Activity Item 1 -->
+<div class="flex items-start space-x-4 p-4 border-b border-surface-variant hover:bg-surface-container-low transition-colors">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary-container flex-shrink-0 mt-1">
+<span class="material-symbols-outlined">qr_code_2</span>
+</div>
+<div class="flex-1">
+<p class="font-body-sm text-body-sm text-on-surface"><strong>Andi Saputra</strong> - Hadir via Barcode</p>
+<p class="font-label-sm text-label-sm text-outline mt-1">Hari ini, 08:00</p>
+</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="flex items-start space-x-4 p-4 border-b border-surface-variant hover:bg-surface-container-low transition-colors">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary-container flex-shrink-0 mt-1">
+<span class="material-symbols-outlined">upload_file</span>
+</div>
+<div class="flex-1">
+<p class="font-body-sm text-body-sm text-on-surface"><strong>Siti Aminah</strong> - Mengumpulkan Tugas: Logic Basics</p>
+<p class="font-label-sm text-label-sm text-outline mt-1">Hari ini, 08:15</p>
+</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="flex items-start space-x-4 p-4 hover:bg-surface-container-low transition-colors">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary-container flex-shrink-0 mt-1">
+<span class="material-symbols-outlined">face</span>
+</div>
+<div class="flex-1">
+<p class="font-body-sm text-body-sm text-on-surface"><strong>Budi Hartono</strong> - Hadir via Scan Wajah</p>
+<p class="font-label-sm text-label-sm text-outline mt-1">Hari ini, 08:05</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Task Submission Bar Chart -->
+<div class="bg-surface rounded-lg p-6 subtle-shadow border border-surface-variant">
+<div class="flex justify-between items-center mb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Statistik Pengumpulan Tugas</h2>
+<select class="bg-transparent border-none text-label-sm font-label-sm text-outline focus:ring-0 cursor-pointer">
+<option>Minggu Ini</option>
+<option>Bulan Ini</option>
+</select>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Persentase siswa yang telah mengumpulkan tugas per modul.</p>
+<div class="bar-chart-container border-b border-surface-variant">
+<div class="bar-group">
+<div class="bar h-[85%]" title="Modul 1: 85%"></div>
+<span class="bar-label font-label-sm">Mod 1</span>
+</div>
+<div class="bar-group">
+<div class="bar h-[92%]" title="Modul 2: 92%"></div>
+<span class="bar-label font-label-sm">Mod 2</span>
+</div>
+<div class="bar-group">
+<div class="bar h-[65%]" title="Modul 3: 65%"></div>
+<span class="bar-label font-label-sm">Mod 3</span>
+</div>
+<div class="bar-group">
+<div class="bar h-[40%] bg-secondary-container" title="Modul 4: 40%"></div>
+<span class="bar-label font-label-sm">Mod 4</span>
+</div>
+<div class="bar-group">
+<div class="bar h-[10%] bg-surface-variant" title="Modul 5: 10%"></div>
+<span class="bar-label font-label-sm">Mod 5</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>
