@@ -1,6 +1,13 @@
 import { NavLink } from 'react-router-dom'
 import { navItems, settingsItem } from '../../config/navigation'
 
+const navClass = ({ isActive }) =>
+  isActive
+    ? 'flex items-center gap-3 rounded-lg border-l-2 border-brand bg-white/10 px-3 py-2.5 text-sm font-semibold text-white'
+    : 'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-[#D1D5DB] transition-colors hover:bg-brand/15 hover:text-white'
+
+const iconClass = (isActive) => `h-5 w-5 ${isActive ? 'text-white' : 'text-[#CBD5E1]'}`
+
 export default function Sidebar() {
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-[260px] flex-col bg-navy lg:flex">
@@ -23,26 +30,14 @@ export default function Sidebar() {
       <nav className="flex-1 space-y-2 overflow-y-auto px-3 py-2">
         {navItems.map((item) => {
           const Icon = item.icon
-          if (item.active) {
-            return (
-              <span
-                key={item.id}
-                className="flex items-center gap-3 rounded-lg border-l-2 border-brand bg-white/10 px-3 py-2.5 text-sm font-semibold text-white"
-                aria-current="page"
-              >
-                <Icon className="h-5 w-5 text-white" strokeWidth={2} />
-                {item.label}
-              </span>
-            )
-          }
           return (
-            <NavLink
-              key={item.id}
-              to={item.to}
-              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-[#D1D5DB] transition-colors hover:bg-brand/15 hover:text-white"
-            >
-              <Icon className="h-5 w-5 text-[#CBD5E1]" strokeWidth={2} />
-              {item.label}
+            <NavLink key={item.id} to={item.to} className={navClass}>
+              {({ isActive }) => (
+                <>
+                  <Icon className={iconClass(isActive)} strokeWidth={2} />
+                  {item.label}
+                </>
+              )}
             </NavLink>
           )
         })}
@@ -50,12 +45,13 @@ export default function Sidebar() {
 
       {/* Settings */}
       <div className="border-t border-white/10 px-3 py-4">
-        <NavLink
-          to={settingsItem.to}
-          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-[#D1D5DB] transition-colors hover:bg-brand/15 hover:text-white"
-        >
-          <settingsItem.icon className="h-5 w-5 text-[#CBD5E1]" strokeWidth={2} />
-          {settingsItem.label}
+        <NavLink to={settingsItem.to} className={navClass}>
+          {({ isActive }) => (
+            <>
+              <settingsItem.icon className={iconClass(isActive)} strokeWidth={2} />
+              {settingsItem.label}
+            </>
+          )}
         </NavLink>
       </div>
     </aside>

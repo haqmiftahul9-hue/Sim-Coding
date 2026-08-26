@@ -2,6 +2,9 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Sidebar from './components/layout/Sidebar'
 import Navbar from './components/layout/Navbar'
 import Dashboard from './pages/admin/Dashboard'
+import DataSiswa from './pages/admin/DataSiswa'
+import DetailSiswa from './pages/admin/DetailSiswa'
+import PresensiDigital from './pages/admin/PresensiDigital'
 
 export default function App() {
   return (
@@ -13,6 +16,9 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/students" element={<DataSiswa />} />
+            <Route path="/admin/students/:id" element={<DetailSiswa />} />
+            <Route path="/admin/presensi" element={<PresensiDigital />} />
             {/* Halaman lain akan ditambahkan di sini */}
             <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
           </Routes>
