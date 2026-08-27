@@ -36,6 +36,16 @@ export default {
       borderRadius: {
         xl: '0.875rem',
       },
+      keyframes: {
+        scan: {
+          '0%': { top: '12%' },
+          '50%': { top: '82%' },
+          '100%': { top: '12%' },
+        },
+      },
+      animation: {
+        scan: 'scan 2s ease-in-out infinite',
+      },
     },
   },
   plugins: [],
