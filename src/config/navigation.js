@@ -16,7 +16,7 @@ export const navItems = [
   { id: 'attendance', label: 'Presensi Digital', icon: Fingerprint, to: '/admin/presensi' },
   { id: 'tasks', label: 'Tugas Siswa', icon: ClipboardList, to: '#' },
   { id: 'grading', label: 'Penilaian', icon: GraduationCap, to: '#' },
-  { id: 'report', label: 'Rapor', icon: FileText, to: '#' },
+  { id: 'report', label: 'Rapor', icon: FileText, to: '/admin/report' },
   { id: 'recap', label: 'Rekapitulasi', icon: FileStack, to: '#' },
 ]
 
