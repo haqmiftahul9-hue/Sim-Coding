@@ -6,6 +6,7 @@ import DataSiswa from './pages/admin/DataSiswa'
 import DetailSiswa from './pages/admin/DetailSiswa'
 import PresensiDigital from './pages/admin/PresensiDigital'
 import Penilaian from './pages/admin/Penilaian'
+import TugasSiswa from './pages/admin/TugasSiswa'
 import Rapor from './pages/admin/Rapor'
 import RaporDetail from './pages/admin/RaporDetail'
 
@@ -23,6 +24,7 @@ export default function App() {
             <Route path="/admin/students/:id" element={<DetailSiswa />} />
             <Route path="/admin/presensi" element={<PresensiDigital />} />
             <Route path="/admin/penilaian" element={<Penilaian />} />
+            <Route path="/admin/tugas" element={<TugasSiswa />} />
             <Route path="/admin/report" element={<Rapor />} />
             <Route path="/admin/rapor/:id" element={<RaporDetail />} />
             {/* Halaman lain akan ditambahkan di sini */}
