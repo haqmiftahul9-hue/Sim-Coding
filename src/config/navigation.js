@@ -7,6 +7,7 @@ import {
   FileText,
   FileStack,
   Settings,
+  LogOut,
 } from 'lucide-react'
 
 // Daftar menu sidebar. `to` diisi saat routing halaman sudah dibuat.
@@ -18,6 +19,7 @@ export const navItems = [
   { id: 'grading', label: 'Penilaian', icon: GraduationCap, to: '/admin/penilaian' },
   { id: 'report', label: 'Rapor', icon: FileText, to: '/admin/report' },
   { id: 'recap', label: 'Rekapitulasi', icon: FileStack, to: '#' },
+  { id: 'settings', label: 'Pengaturan', icon: Settings, to: '/admin/pengaturan' },
 ]
 
-export const settingsItem = { id: 'settings', label: 'Pengaturan', icon: Settings, to: '#' }
+export const logoutItem = { id: 'logout', label: 'Keluar', icon: LogOut }

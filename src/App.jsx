@@ -9,6 +9,8 @@ import Penilaian from './pages/admin/Penilaian'
 import TugasSiswa from './pages/admin/TugasSiswa'
 import Rapor from './pages/admin/Rapor'
 import RaporDetail from './pages/admin/RaporDetail'
+import Pengaturan from './pages/admin/Pengaturan'
+import Login from './pages/Login'
 
 export default function App() {
   return (
@@ -19,6 +21,7 @@ export default function App() {
         <main className="flex-1 p-4 sm:p-6 lg:p-8">
           <Routes>
             <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/admin/dashboard" element={<Dashboard />} />
             <Route path="/admin/students" element={<DataSiswa />} />
             <Route path="/admin/students/:id" element={<DetailSiswa />} />
@@ -27,6 +30,7 @@ export default function App() {
             <Route path="/admin/tugas" element={<TugasSiswa />} />
             <Route path="/admin/report" element={<Rapor />} />
             <Route path="/admin/rapor/:id" element={<RaporDetail />} />
+            <Route path="/admin/pengaturan" element={<Pengaturan />} />
             {/* Halaman lain akan ditambahkan di sini */}
             <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
           </Routes>
