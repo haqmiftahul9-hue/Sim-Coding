@@ -47,13 +47,13 @@ export default function StudentPresensi() {
   const studentKelas = currentStudent?.kelas
 
   useEffect(() => {
-    if (studentNama) {
-      const status = presensiService.getTodayStatus(studentNama)
+    if (studentId) {
+      const status = presensiService.getTodayStatusByStudentId(studentId)
       setTodayStatus(status)
-      const history = presensiService.getByStudentName(studentNama).slice(0, 5)
+      const history = presensiService.getByStudentId(studentId).slice(0, 5)
       setRecentHistory(history)
     }
-  }, [studentNama])
+  }, [studentId])
 
   const startCamera = useCallback(async () => {
     try {
@@ -121,9 +121,11 @@ export default function StudentPresensi() {
     setScanning(false)
     stopCamera()
 
-    const history = presensiService.getByStudentName(studentNama).slice(0, 5)
-    setRecentHistory(history)
-  }, [cameraOn, studentNama, studentKelas, startCamera, stopCamera])
+    if (studentId) {
+      const history = presensiService.getByStudentId(studentId).slice(0, 5)
+      setRecentHistory(history)
+    }
+  }, [cameraOn, studentNama, studentKelas, studentId, startCamera, stopCamera])
 
   const handleReset = useCallback(() => {
     setScanResult(null)

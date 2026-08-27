@@ -14,6 +14,7 @@ import Rapor from './pages/admin/Rapor'
 import RaporDetail from './pages/admin/RaporDetail'
 import Pengaturan from './pages/admin/Pengaturan'
 import Rekapitulasi from './pages/admin/Rekapitulasi'
+import ManajemenAkun from './pages/admin/ManajemenAkun'
 import Login from './pages/auth/Login'
 import StudentDashboard from './pages/student/StudentDashboard'
 import StudentPresensi from './pages/student/StudentPresensi'
@@ -76,6 +77,16 @@ function AppRoutes() {
           <AdminRoute>
             <AdminLayout>
               <DetailSiswa />
+            </AdminLayout>
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/akun"
+        element={
+          <AdminRoute>
+            <AdminLayout>
+              <ManajemenAkun />
             </AdminLayout>
           </AdminRoute>
         }

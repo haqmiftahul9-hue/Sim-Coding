@@ -28,6 +28,8 @@ export const users = [
     password: '123456',
     role: 'siswa',
     nama: 'Ahmad Dani',
+    kelas: '5A',
+    student_id: 1,
     avatar: null,
   },
   {
@@ -37,6 +39,8 @@ export const users = [
     password: '123456',
     role: 'siswa',
     nama: 'Budi Santoso',
+    kelas: '5A',
+    student_id: 2,
     avatar: null,
   },
   {
@@ -46,6 +50,8 @@ export const users = [
     password: '123456',
     role: 'siswa',
     nama: 'Citra Dewi',
+    kelas: '5A',
+    student_id: 3,
     avatar: null,
   },
   {
@@ -55,6 +61,8 @@ export const users = [
     password: '123456',
     role: 'siswa',
     nama: 'Dian Pratama',
+    kelas: '5A',
+    student_id: 4,
     avatar: null,
   },
 ]

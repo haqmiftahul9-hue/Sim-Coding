@@ -55,6 +55,16 @@ export const students = [
     status: 'Aktif',
     avatar: null,
   },
+  {
+    id: 5,
+    name: 'Test Siswa',
+    nis: '2023005',
+    kelas: '5A',
+    gender: 'Laki-laki',
+    barcode: 'BC-5A-005',
+    status: 'Aktif',
+    avatar: null,
+  },
 ]
 
 export const totalStudents = 120

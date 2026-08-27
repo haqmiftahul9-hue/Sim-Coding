@@ -43,6 +43,16 @@ export const students = [
     foto: null,
     initials: 'DP',
   },
+  {
+    id: 5,
+    user_id: 7,
+    nama: 'Test Siswa',
+    kelas: '5A',
+    nis: '2023005',
+    email: 'testsiswa@simcoding.id',
+    foto: null,
+    initials: 'TS',
+  },
 ]
 
 export const studentService = {

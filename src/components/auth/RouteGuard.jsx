@@ -40,7 +40,7 @@ export function StudentRoute({ children }) {
     return <Navigate to="/login" state={{ from: location }} replace />
   }
 
-  if (currentUser.role !== 'student') {
+  if (currentUser.role !== 'siswa') {
     return <Navigate to="/admin/dashboard" replace />
   }
 

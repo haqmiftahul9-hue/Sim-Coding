@@ -1,5 +1,5 @@
 import { presensi as initialPresensi } from '../data/presensi'
-import { students } from '../data/students'
+import { students } from '../services/studentService'
 
 const STORAGE_KEY = 'simcoding_presensi'
 
@@ -51,7 +51,13 @@ export const presensiService = {
   getByStudentId(studentId) {
     const student = students.find((s) => s.id === studentId)
     if (!student) return []
-    return presensiData.filter((p) => p.nama === student.name)
+    return presensiData.filter((p) => p.nama === student.nama)
+  },
+
+  getTodayStatusByStudentId(studentId) {
+    const student = students.find((s) => s.id === studentId)
+    if (!student) return null
+    return this.getTodayStatus(student.nama)
   },
 
   getTodayStatus(nama) {

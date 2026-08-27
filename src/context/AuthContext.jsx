@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { authenticate, getUserById } from '../data/users'
+import { accountService } from '../services/accountService'
 import { studentService } from '../services/studentService'
 
 const AuthContext = createContext(null)
@@ -14,11 +14,12 @@ export function AuthProvider({ children }) {
     if (storedUser) {
       try {
         const user = JSON.parse(storedUser)
-        const freshUser = getUserById(user.id)
-        if (freshUser) {
-          setCurrentUser(freshUser)
-          if (freshUser.role === 'siswa') {
-            const student = studentService.getByUserId(freshUser.id)
+        const freshUser = accountService.getById(user.id)
+        if (freshUser && freshUser.status === 'aktif') {
+          const { password: _, ...userWithoutPassword } = freshUser
+          setCurrentUser(userWithoutPassword)
+          if (freshUser.role === 'siswa' && freshUser.student_id) {
+            const student = studentService.getById(freshUser.student_id)
             setCurrentStudent(student)
           }
         } else {
@@ -32,17 +33,43 @@ export function AuthProvider({ children }) {
   }, [])
 
   const login = (username, password, role) => {
-    const result = authenticate(username, password, role)
-    if (result.success) {
-      setCurrentUser(result.user)
-      localStorage.setItem('simcoding_user', JSON.stringify(result.user))
-      if (result.user.role === 'siswa') {
-        const student = studentService.getByUserId(result.user.id)
-        setCurrentStudent(student)
+    const accounts = accountService.getAll()
+
+    console.log('ALL ACCOUNTS', accounts)
+    console.log('USERNAME INPUT', username)
+    console.log('PASSWORD INPUT', password)
+    console.log('ROLE INPUT', role)
+
+    const user = accounts.find((u) => {
+      const usernameMatch = u.username === username
+      const passwordMatch = u.password === password
+
+      if (role === 'admin') {
+        return usernameMatch && passwordMatch && (u.role === 'admin' || u.role === 'guru')
       }
-      return { success: true, user: result.user }
+      return usernameMatch && passwordMatch && u.role === role
+    })
+
+    console.log('MATCH USER', user)
+
+    if (!user) {
+      return { success: false, message: 'Username atau password salah' }
     }
-    return { success: false, message: result.message }
+
+    if (user.status === 'nonaktif') {
+      return { success: false, message: 'Akun Anda tidak aktif. Hubungi administrator.' }
+    }
+
+    const { password: _, ...userWithoutPassword } = user
+    setCurrentUser(userWithoutPassword)
+    localStorage.setItem('simcoding_user', JSON.stringify(userWithoutPassword))
+
+    if (user.role === 'siswa' && user.student_id) {
+      const student = studentService.getById(user.student_id)
+      setCurrentStudent(student)
+    }
+
+    return { success: true, user: userWithoutPassword }
   }
 
   const logout = () => {

@@ -10,13 +10,22 @@ const navItems = [
 ]
 
 export default function StudentLayout({ children }) {
-  const { currentStudent, logout } = useAuth()
+  const { currentStudent, currentUser, logout } = useAuth()
   const navigate = useNavigate()
 
   const handleLogout = () => {
     logout()
     navigate('/login')
   }
+
+  const studentName = currentStudent?.nama || currentUser?.nama || 'Siswa'
+  const studentKelas = currentStudent?.kelas || currentUser?.kelas
+  const studentInitials = studentName
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase()
 
   return (
     <div className="min-h-screen bg-[#f8fafc] flex">
@@ -33,13 +42,29 @@ export default function StudentLayout({ children }) {
           </div>
         </div>
 
-        {/* User Info */}
+        {/* User Info with Photo */}
         <div className="px-6 py-4 border-b border-white/10">
-          <p className="text-sm text-white/80">Halo,</p>
-          <p className="text-sm font-medium text-white">{currentStudent?.nama || 'Siswa'}</p>
-          {currentStudent?.kelas && (
-            <p className="text-xs text-white/50 mt-0.5">Kelas {currentStudent.kelas}</p>
-          )}
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center overflow-hidden border-2 border-white/30">
+              {currentStudent?.foto ? (
+                <img
+                  src={currentStudent.foto}
+                  alt={studentName}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <span className="text-lg font-semibold text-white">
+                  {studentInitials}
+                </span>
+              )}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium text-white truncate">{studentName}</p>
+              {studentKelas && (
+                <p className="text-xs text-white/60">Kelas {studentKelas}</p>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Navigation */}

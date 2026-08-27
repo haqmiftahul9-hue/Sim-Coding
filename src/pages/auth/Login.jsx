@@ -61,7 +61,7 @@ export default function Login() {
     const result = login(username, password, role)
 
     if (result.success) {
-      if (result.user.role === 'admin') {
+      if (result.user.role === 'admin' || result.user.role === 'guru') {
         navigate('/admin/dashboard')
       } else {
         navigate('/student/dashboard')
@@ -134,9 +134,9 @@ export default function Login() {
             </button>
             <button
               type="button"
-              onClick={() => setRole('student')}
+              onClick={() => setRole('siswa')}
               className={`flex-1 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
-                role === 'student'
+                role === 'siswa'
                   ? 'bg-[#00183d] text-white shadow-sm'
                   : 'text-gray-500 hover:text-gray-700'
               }`}
