@@ -1,12 +1,13 @@
 // Data dummy untuk halaman Tugas Siswa
 // Struktur siap untuk integrasi Supabase
+// Data terhubung dengan student_id untuk multi-user
 
 export const tasksData = [
   {
     id: 1,
     judul: 'Aplikasi Kalkulator Sederhana',
     deskripsi: 'Buat aplikasi kalkulator dengan operasi dasar menggunakan JavaScript',
-    kelas: '10A',
+    kelas: '5A',
     tanggal_mulai: '2024-01-10',
     deadline: '2024-01-17',
     status: 'aktif',
@@ -16,7 +17,7 @@ export const tasksData = [
     id: 2,
     judul: 'Logical Operators in JavaScript',
     deskripsi: 'Praktik penggunaan operator logika dalam JavaScript',
-    kelas: '11B',
+    kelas: '5A',
     tanggal_mulai: '2024-01-17',
     deadline: '2024-01-24',
     status: 'aktif',
@@ -26,7 +27,7 @@ export const tasksData = [
     id: 3,
     judul: 'Struktur HTML Dasar',
     deskripsi: 'Buat halaman web sederhana dengan HTML semantic',
-    kelas: 'Semua Kelas',
+    kelas: '5A',
     tanggal_mulai: '2024-01-24',
     deadline: '2024-01-31',
     status: 'draft',
@@ -85,10 +86,10 @@ export const submissionsData = [
 ]
 
 export const studentsData = [
-  { id: 1, nama: 'Ahmad Dani', kelas: '10A', initials: 'AD' },
-  { id: 2, nama: 'Budi Santoso', kelas: '10A', initials: 'BS' },
-  { id: 3, nama: 'Citra Dewi', kelas: '10A', initials: 'CD' },
-  { id: 4, nama: 'Dian Pratama', kelas: '10A', initials: 'DP' },
+  { id: 1, nama: 'Ahmad Dani', kelas: '5A', initials: 'AD' },
+  { id: 2, nama: 'Budi Santoso', kelas: '5A', initials: 'BS' },
+  { id: 3, nama: 'Citra Dewi', kelas: '5A', initials: 'CD' },
+  { id: 4, nama: 'Dian Pratama', kelas: '5A', initials: 'DP' },
 ]
 
 export const kelasOptions = ['Semua Kelas', '5A', '10A', '11B']

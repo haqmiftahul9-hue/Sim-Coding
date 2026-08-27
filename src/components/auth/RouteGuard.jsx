@@ -17,7 +17,7 @@ export function AdminRoute({ children }) {
     return <Navigate to="/login" state={{ from: location }} replace />
   }
 
-  if (currentUser.role !== 'admin') {
+  if (currentUser.role !== 'admin' && currentUser.role !== 'guru') {
     return <Navigate to="/student/dashboard" replace />
   }
 
@@ -59,7 +59,7 @@ export function PublicRoute({ children }) {
   }
 
   if (currentUser) {
-    if (currentUser.role === 'admin') {
+    if (currentUser.role === 'admin' || currentUser.role === 'guru') {
       return <Navigate to="/admin/dashboard" replace />
     }
     return <Navigate to="/student/dashboard" replace />

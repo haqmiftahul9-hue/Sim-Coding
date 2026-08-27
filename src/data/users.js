@@ -1,5 +1,6 @@
-// Data dummy user untuk autentikasi
+// Data user untuk autentikasi multi-user
 // Struktur siap untuk integrasi Supabase
+// Role: admin, guru, siswa
 
 export const users = [
   {
@@ -16,28 +17,44 @@ export const users = [
     username: 'guru',
     email: 'guru@simcoding.id',
     password: '123456',
-    role: 'admin',
+    role: 'guru',
     nama: 'Ahmad Programmer, S.Kom',
     avatar: null,
   },
   {
     id: 3,
     username: 'siswa',
-    email: 'siswa@simcoding.id',
+    email: 'ahmad@simcoding.id',
     password: '123456',
-    role: 'student',
-    nama: 'Budi Santoso',
-    kelas: '5A',
+    role: 'siswa',
+    nama: 'Ahmad Dani',
     avatar: null,
   },
   {
     id: 4,
+    username: 'budi',
+    email: 'budi@simcoding.id',
+    password: '123456',
+    role: 'siswa',
+    nama: 'Budi Santoso',
+    avatar: null,
+  },
+  {
+    id: 5,
     username: 'citra',
     email: 'citra@simcoding.id',
     password: '123456',
-    role: 'student',
+    role: 'siswa',
     nama: 'Citra Dewi',
-    kelas: '5A',
+    avatar: null,
+  },
+  {
+    id: 6,
+    username: 'dian',
+    email: 'dian@simcoding.id',
+    password: '123456',
+    role: 'siswa',
+    nama: 'Dian Pratama',
     avatar: null,
   },
 ]
@@ -60,6 +77,15 @@ export const authenticate = (username, password, role) => {
 
 export const getUserById = (id) => {
   const user = users.find((u) => u.id === id)
+  if (user) {
+    const { password: _, ...userWithoutPassword } = user
+    return userWithoutPassword
+  }
+  return null
+}
+
+export const getUserByUsername = (username) => {
+  const user = users.find((u) => u.username === username || u.email === username)
   if (user) {
     const { password: _, ...userWithoutPassword } = user
     return userWithoutPassword

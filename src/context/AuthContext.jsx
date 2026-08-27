@@ -1,10 +1,12 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { authenticate, getUserById } from '../data/users'
+import { studentService } from '../services/studentService'
 
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null)
+  const [currentStudent, setCurrentStudent] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -15,6 +17,10 @@ export function AuthProvider({ children }) {
         const freshUser = getUserById(user.id)
         if (freshUser) {
           setCurrentUser(freshUser)
+          if (freshUser.role === 'siswa') {
+            const student = studentService.getByUserId(freshUser.id)
+            setCurrentStudent(student)
+          }
         } else {
           localStorage.removeItem('simcoding_user')
         }
@@ -30,6 +36,10 @@ export function AuthProvider({ children }) {
     if (result.success) {
       setCurrentUser(result.user)
       localStorage.setItem('simcoding_user', JSON.stringify(result.user))
+      if (result.user.role === 'siswa') {
+        const student = studentService.getByUserId(result.user.id)
+        setCurrentStudent(student)
+      }
       return { success: true, user: result.user }
     }
     return { success: false, message: result.message }
@@ -37,18 +47,22 @@ export function AuthProvider({ children }) {
 
   const logout = () => {
     setCurrentUser(null)
+    setCurrentStudent(null)
     localStorage.removeItem('simcoding_user')
   }
 
-  const isAdmin = () => currentUser?.role === 'admin'
-  const isStudent = () => currentUser?.role === 'student'
+  const isAdmin = () => currentUser?.role === 'admin' || currentUser?.role === 'guru'
+  const isStudent = () => currentUser?.role === 'siswa'
+  const isGuru = () => currentUser?.role === 'guru'
 
   const value = {
     currentUser,
+    currentStudent,
     login,
     logout,
     isAdmin,
     isStudent,
+    isGuru,
     loading,
   }
 

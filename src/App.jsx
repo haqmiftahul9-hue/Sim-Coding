@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext'
 import { AdminRoute, StudentRoute, PublicRoute } from './components/auth/RouteGuard'
 import Sidebar from './components/layout/Sidebar'
 import Navbar from './components/layout/Navbar'
+import StudentLayout from './components/layout/StudentLayout'
 import Dashboard from './pages/admin/Dashboard'
 import DataSiswa from './pages/admin/DataSiswa'
 import DetailSiswa from './pages/admin/DetailSiswa'
@@ -15,6 +16,9 @@ import Pengaturan from './pages/admin/Pengaturan'
 import Rekapitulasi from './pages/admin/Rekapitulasi'
 import Login from './pages/auth/Login'
 import StudentDashboard from './pages/student/StudentDashboard'
+import StudentPresensi from './pages/student/StudentPresensi'
+import StudentTugas from './pages/student/StudentTugas'
+import StudentNilai from './pages/student/StudentNilai'
 
 function AdminLayout({ children }) {
   return (
@@ -152,7 +156,39 @@ function AppRoutes() {
         path="/student/dashboard"
         element={
           <StudentRoute>
-            <StudentDashboard />
+            <StudentLayout>
+              <StudentDashboard />
+            </StudentLayout>
+          </StudentRoute>
+        }
+      />
+      <Route
+        path="/student/presensi"
+        element={
+          <StudentRoute>
+            <StudentLayout>
+              <StudentPresensi />
+            </StudentLayout>
+          </StudentRoute>
+        }
+      />
+      <Route
+        path="/student/tugas"
+        element={
+          <StudentRoute>
+            <StudentLayout>
+              <StudentTugas />
+            </StudentLayout>
+          </StudentRoute>
+        }
+      />
+      <Route
+        path="/student/nilai"
+        element={
+          <StudentRoute>
+            <StudentLayout>
+              <StudentNilai />
+            </StudentLayout>
           </StudentRoute>
         }
       />
@@ -162,7 +198,7 @@ function AppRoutes() {
         path="/"
         element={
           currentUser ? (
-            currentUser.role === 'admin' ? (
+            currentUser.role === 'admin' || currentUser.role === 'guru' ? (
               <Navigate to="/admin/dashboard" replace />
             ) : (
               <Navigate to="/student/dashboard" replace />

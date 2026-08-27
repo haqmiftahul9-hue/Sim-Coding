@@ -1,6 +1,7 @@
 // Data dummy untuk halaman Penilaian
 // Struktur siap untuk integrasi Supabase
 // Terhubung dengan modul Penugasan Siswa
+// Data terhubung dengan student_id untuk multi-user
 
 // Daftar tugas (dari modul Penugasan)
 export const tasks = [

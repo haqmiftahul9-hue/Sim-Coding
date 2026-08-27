@@ -1,7 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Pencil, FileDown, QrCode, Camera, ListChecks } from 'lucide-react'
-import { presensi } from '../../data/presensi'
 import { students } from '../../data/students'
+import { presensiService } from '../../services/presensiService'
 import AttendanceFilter from '../../components/presensi/AttendanceFilter'
 import AttendanceTable from '../../components/presensi/AttendanceTable'
 import ManualAttendanceModal from '../../components/presensi/ManualAttendanceModal'
@@ -20,7 +20,7 @@ const tabs = [
 
 export default function PresensiDigital() {
   const [active, setActive] = useState('rekap')
-  const [rows, setRows] = useState(presensi)
+  const [rows, setRows] = useState([])
   const [tanggal, setTanggal] = useState('')
   const [kelas, setKelas] = useState('')
   const [status, setStatus] = useState('')
@@ -29,6 +29,14 @@ export default function PresensiDigital() {
   const [sortDir, setSortDir] = useState('desc')
   const [page, setPage] = useState(1)
   const [manualOpen, setManualOpen] = useState(false)
+
+  useEffect(() => {
+    setRows(presensiService.getAll())
+    const unsubscribe = presensiService.subscribe((data) => {
+      setRows([...data])
+    })
+    return unsubscribe
+  }, [])
 
   const resetPage = () => setPage(1)
 
@@ -44,8 +52,7 @@ export default function PresensiDigital() {
   }, [rows, search, kelas, status, tanggal])
 
   const handleAddAttendance = (entry) => {
-    const nextId = rows.reduce((max, r) => Math.max(max, r.id), 0) + 1
-    setRows((prev) => [{ id: nextId, ...entry }, ...prev])
+    presensiService.addAttendance(entry)
     setManualOpen(false)
     resetPage()
   }
