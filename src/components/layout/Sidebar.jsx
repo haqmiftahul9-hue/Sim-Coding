@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { navItems, logoutItem } from '../../config/navigation'
+import { useAuth } from '../../context/AuthContext'
 import LogoutModal from '../settings/LogoutModal'
 
 const navClass = ({ isActive }) =>
@@ -13,10 +14,10 @@ const iconClass = (isActive) => `h-5 w-5 ${isActive ? 'text-white' : 'text-[#CBD
 export default function Sidebar() {
   const [showLogoutModal, setShowLogoutModal] = useState(false)
   const navigate = useNavigate()
+  const { currentUser, logout } = useAuth()
 
   const handleLogout = () => {
-    // TODO: Clear session/token from localStorage or Supabase auth
-    localStorage.removeItem('authToken')
+    logout()
     setShowLogoutModal(false)
     navigate('/login')
   }
@@ -38,6 +39,14 @@ export default function Sidebar() {
             <p className="text-xs text-slate-300">Administrator Portal</p>
           </div>
         </div>
+
+        {/* User Info */}
+        {currentUser && (
+          <div className="px-6 pb-4 mb-2 border-b border-white/10">
+            <p className="text-sm text-white font-medium truncate">{currentUser.nama}</p>
+            <p className="text-xs text-slate-300">{currentUser.role === 'admin' ? 'Administrator' : 'Guru'}</p>
+          </div>
+        )}
 
         {/* Navigation */}
         <nav className="flex-1 space-y-2 overflow-y-auto px-3 py-2">

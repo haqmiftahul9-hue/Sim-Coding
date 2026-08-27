@@ -1,4 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
+import { AuthProvider, useAuth } from './context/AuthContext'
+import { AdminRoute, StudentRoute, PublicRoute } from './components/auth/RouteGuard'
 import Sidebar from './components/layout/Sidebar'
 import Navbar from './components/layout/Navbar'
 import Dashboard from './pages/admin/Dashboard'
@@ -10,32 +12,177 @@ import TugasSiswa from './pages/admin/TugasSiswa'
 import Rapor from './pages/admin/Rapor'
 import RaporDetail from './pages/admin/RaporDetail'
 import Pengaturan from './pages/admin/Pengaturan'
-import Login from './pages/Login'
+import Rekapitulasi from './pages/admin/Rekapitulasi'
+import Login from './pages/auth/Login'
+import StudentDashboard from './pages/student/StudentDashboard'
 
-export default function App() {
+function AdminLayout({ children }) {
   return (
     <div className="min-h-screen bg-surface">
       <Sidebar />
       <div className="lg:pl-[260px] flex min-h-screen flex-col">
         <Navbar />
         <main className="flex-1 p-4 sm:p-6 lg:p-8">
-          <Routes>
-            <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/admin/dashboard" element={<Dashboard />} />
-            <Route path="/admin/students" element={<DataSiswa />} />
-            <Route path="/admin/students/:id" element={<DetailSiswa />} />
-            <Route path="/admin/presensi" element={<PresensiDigital />} />
-            <Route path="/admin/penilaian" element={<Penilaian />} />
-            <Route path="/admin/tugas" element={<TugasSiswa />} />
-            <Route path="/admin/report" element={<Rapor />} />
-            <Route path="/admin/rapor/:id" element={<RaporDetail />} />
-            <Route path="/admin/pengaturan" element={<Pengaturan />} />
-            {/* Halaman lain akan ditambahkan di sini */}
-            <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
-          </Routes>
+          {children}
         </main>
       </div>
     </div>
+  )
+}
+
+function AppRoutes() {
+  const { currentUser } = useAuth()
+
+  return (
+    <Routes>
+      {/* Public Routes */}
+      <Route
+        path="/login"
+        element={
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        }
+      />
+
+      {/* Admin Routes */}
+      <Route
+        path="/admin/dashboard"
+        element={
+          <AdminRoute>
+            <AdminLayout>
+              <Dashboard />
+            </AdminLayout>
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/students"
+        element={
+          <AdminRoute>
+            <AdminLayout>
+              <DataSiswa />
+            </AdminLayout>
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/students/:id"
+        element={
+          <AdminRoute>
+            <AdminLayout>
+              <DetailSiswa />
+            </AdminLayout>
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/presensi"
+        element={
+          <AdminRoute>
+            <AdminLayout>
+              <PresensiDigital />
+            </AdminLayout>
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/penilaian"
+        element={
+          <AdminRoute>
+            <AdminLayout>
+              <Penilaian />
+            </AdminLayout>
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/tugas"
+        element={
+          <AdminRoute>
+            <AdminLayout>
+              <TugasSiswa />
+            </AdminLayout>
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/report"
+        element={
+          <AdminRoute>
+            <AdminLayout>
+              <Rapor />
+            </AdminLayout>
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/rapor/:id"
+        element={
+          <AdminRoute>
+            <AdminLayout>
+              <RaporDetail />
+            </AdminLayout>
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/pengaturan"
+        element={
+          <AdminRoute>
+            <AdminLayout>
+              <Pengaturan />
+            </AdminLayout>
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/rekapitulasi"
+        element={
+          <AdminRoute>
+            <AdminLayout>
+              <Rekapitulasi />
+            </AdminLayout>
+          </AdminRoute>
+        }
+      />
+
+      {/* Student Routes */}
+      <Route
+        path="/student/dashboard"
+        element={
+          <StudentRoute>
+            <StudentDashboard />
+          </StudentRoute>
+        }
+      />
+
+      {/* Default redirect based on role */}
+      <Route
+        path="/"
+        element={
+          currentUser ? (
+            currentUser.role === 'admin' ? (
+              <Navigate to="/admin/dashboard" replace />
+            ) : (
+              <Navigate to="/student/dashboard" replace />
+            )
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+
+      {/* Catch all */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  )
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   )
 }

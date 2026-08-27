@@ -18,7 +18,7 @@ export const navItems = [
   { id: 'tasks', label: 'Tugas Siswa', icon: ClipboardList, to: '/admin/tugas' },
   { id: 'grading', label: 'Penilaian', icon: GraduationCap, to: '/admin/penilaian' },
   { id: 'report', label: 'Rapor', icon: FileText, to: '/admin/report' },
-  { id: 'recap', label: 'Rekapitulasi', icon: FileStack, to: '#' },
+  { id: 'recap', label: 'Rekapitulasi', icon: FileStack, to: '/admin/rekapitulasi' },
   { id: 'settings', label: 'Pengaturan', icon: Settings, to: '/admin/pengaturan' },
 ]
 
