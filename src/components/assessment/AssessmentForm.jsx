@@ -128,7 +128,7 @@ export default function AssessmentForm({ student, task, submission, assessment, 
     )
   }
 
-  if (!submission?.file) {
+  if (!submission?.file && !submission?.file_data_url) {
     return (
       <div className="bg-surface rounded-xl shadow-level-1 border border-[#F1F5F9] p-6">
         <div className="flex flex-col items-center justify-center py-12 text-center">
@@ -148,7 +148,7 @@ export default function AssessmentForm({ student, task, submission, assessment, 
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 border-b border-outline-variant pb-4">
         <div>
           <h3 className="font-headline-sm text-headline-sm text-primary">Formulir Penilaian</h3>
-          <p className="text-sm text-slate-500 mt-1">{task.judul_tugas}</p>
+          <p className="text-sm text-slate-500 mt-1">{task.judul_tugas || task.judul}</p>
         </div>
         <div className="flex items-center gap-4">
           <div className={`px-4 py-2 rounded-xl ${predikat.bg}`}>

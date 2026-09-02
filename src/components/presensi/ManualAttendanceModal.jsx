@@ -34,6 +34,7 @@ export default function ManualAttendanceModal({ open, onClose, students, onSave 
     e.preventDefault()
     if (!form.studentId || !form.tanggal || !form.status) return
     onSave({
+      studentId: selected?.id ?? null,
       nama: selected?.name ?? '',
       kelas: selected?.kelas ?? '',
       tanggal: toDisplayDate(form.tanggal),
@@ -41,6 +42,7 @@ export default function ManualAttendanceModal({ open, onClose, students, onSave 
       jamMasuk: form.jamMasuk || '-',
       jamPulang: form.jamPulang || '-',
       metode: 'Manual',
+      lokasi: 'Input Manual Admin',
       status: form.status,
       keterangan: form.keterangan || '-',
     })

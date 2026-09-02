@@ -1,14 +1,27 @@
+import { useEffect, useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
-import { assessments } from '../../data/penilaianData'
+import { gradingService } from '../../services/gradingService'
 import { tasksData } from '../../data/tugasData'
 import { Award, TrendingUp, FileText, Star } from 'lucide-react'
 
 export default function StudentNilai() {
   const { currentStudent } = useAuth()
+  const [grades, setGrades] = useState([])
 
   const studentId = currentStudent?.id
 
-  const myAssessments = assessments.filter((a) => a.student_id === studentId)
+  useEffect(() => {
+    if (!studentId) {
+      setGrades([])
+      return undefined
+    }
+    const refresh = () => setGrades(gradingService.getByStudentId(studentId))
+    refresh()
+    const unsub = gradingService.subscribe(refresh)
+    return () => unsub && unsub()
+  }, [studentId])
+
+  const myAssessments = grades
   const publishedAssessments = myAssessments.filter((a) => a.status === 'published')
 
   const rataRataNilai =

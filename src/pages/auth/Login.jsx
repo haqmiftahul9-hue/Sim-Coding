@@ -1,7 +1,138 @@
 import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
-import { User, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react'
+import { User, Lock, Eye, EyeOff, AlertCircle, X } from 'lucide-react'
+
+const ADMIN_WA = '6282390153671'
+
+function buildWaMessage(nama) {
+  const safeNama = (nama || '').trim() || '........................'
+  return `Assalamualaikum Ustadz.
+
+Saya ingin melakukan konfirmasi lupa password akun SimCoding.
+
+Nama siswa:
+${safeNama}
+
+Mohon bantuan untuk reset atau mendapatkan kembali password akun saya.
+
+Terima kasih Ustadz.`
+}
+
+function LupaPasswordModal({ onClose, initialName = '' }) {
+  const [nama, setNama] = useState(initialName)
+  const [step, setStep] = useState(initialName ? 'preview' : 'ask')
+
+  const handleOpenWa = (withName) => {
+    const finalName = withName || nama.trim()
+    const message = buildWaMessage(finalName)
+    const url = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(message)}`
+    window.open(url, '_blank', 'noopener,noreferrer')
+    onClose()
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+      <div className="w-full max-w-md bg-white shadow-2xl rounded-xl overflow-hidden">
+        <div className="flex items-center justify-between border-b border-slate-100 px-5 py-3">
+          <h3 className="font-semibold text-slate-900">Lupa Password</h3>
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div className="p-5 space-y-4">
+          {step === 'ask' && (
+            <>
+              <p className="text-sm text-slate-600">
+                Masukkan nama siswa kamu terlebih dahulu, lalu kami akan membuka
+                WhatsApp admin untuk membantu reset password.
+              </p>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                  Nama Siswa
+                </label>
+                <div className="relative">
+                  <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                    <User className="h-4 w-4" />
+                  </span>
+                  <input
+                    type="text"
+                    value={nama}
+                    onChange={(e) => setNama(e.target.value)}
+                    placeholder="Contoh: Ahmad Dani"
+                    className="block w-full pl-9 pr-3 py-2.5 border border-gray-200 rounded-lg bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-[#00183d]/20 focus:border-[#00183d] focus:bg-white transition-all text-sm"
+                    autoFocus
+                  />
+                </div>
+              </div>
+              <div className="flex gap-3 pt-1">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold border border-slate-200 text-slate-700 hover:bg-slate-50"
+                >
+                  Batal
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setStep('preview')}
+                  className="flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold bg-[#00183d] text-white hover:bg-[#0F2D5C]"
+                >
+                  Lanjut
+                </button>
+              </div>
+            </>
+          )}
+
+          {step === 'preview' && (
+            <>
+              <p className="text-sm text-slate-600">
+                Pesan berikut akan dikirim ke WhatsApp admin. Pastikan nama
+                sudah benar sebelum mengirim.
+              </p>
+              <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700 whitespace-pre-line">
+                {buildWaMessage(nama)}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                  Nama Siswa
+                </label>
+                <input
+                  type="text"
+                  value={nama}
+                  onChange={(e) => setNama(e.target.value)}
+                  placeholder="Contoh: Ahmad Dani"
+                  className="block w-full px-3 py-2.5 border border-gray-200 rounded-lg bg-gray-50 text-gray-900 focus:ring-2 focus:ring-[#00183d]/20 focus:border-[#00183d] focus:bg-white transition-all text-sm"
+                />
+              </div>
+              <div className="flex gap-3 pt-1">
+                <button
+                  type="button"
+                  onClick={() => setStep('ask')}
+                  className="flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold border border-slate-200 text-slate-700 hover:bg-slate-50"
+                >
+                  Kembali
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleOpenWa(nama)}
+                  className="flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold bg-emerald-600 text-white hover:bg-emerald-700 flex items-center justify-center gap-2"
+                >
+                  Buka WhatsApp
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 function SimCodingLogo() {
   return (
@@ -41,9 +172,20 @@ export default function Login() {
   const [rememberMe, setRememberMe] = useState(false)
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [showForgot, setShowForgot] = useState(false)
 
   const { login } = useAuth()
   const navigate = useNavigate()
+
+  const handleForgot = (e) => {
+    if (e) e.preventDefault()
+    if (role !== 'siswa') {
+      setError('Lupa password hanya untuk akun siswa. Hubungi admin untuk bantuan.')
+      return
+    }
+    setError('')
+    setShowForgot(true)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -75,16 +217,13 @@ export default function Login() {
 
   return (
     <div className="w-full min-h-screen flex flex-col lg:flex-row">
-      {/* Left Side - Illustration */}
       <div className="relative hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#00183d] via-[#0F2D5C] to-[#173E7A] overflow-hidden items-center justify-center">
-        {/* Background Effects */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/5 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 right-1/5 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500/5 rounded-full blur-2xl" />
         </div>
 
-        {/* Illustration */}
         <div className="relative z-10 w-4/5 max-w-lg flex items-center justify-center">
           <img
             className="w-full h-full object-contain drop-shadow-2xl"
@@ -93,7 +232,6 @@ export default function Login() {
           />
         </div>
 
-        {/* Bottom Text */}
         <div className="absolute bottom-6 left-6 z-10">
           <p className="text-sm text-white/50 font-light">
             Platform Edukasi Coding Terpadu
@@ -101,15 +239,12 @@ export default function Login() {
         </div>
       </div>
 
-      {/* Right Side - Login Card */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-8 lg:p-12 bg-gray-50">
         <div className="w-full max-w-md bg-white rounded-2xl border border-gray-200 shadow-xl shadow-gray-200/50 p-8 sm:p-10">
-          {/* Logo */}
           <div className="mb-8">
             <SimCodingLogo />
           </div>
 
-          {/* Header */}
           <div className="mb-7">
             <h1 className="text-xl font-semibold text-gray-900 mb-1">
               Masuk ke SimCoding
@@ -119,7 +254,6 @@ export default function Login() {
             </p>
           </div>
 
-          {/* Role Selector - Compact Segmented Control */}
           <div className="flex p-1 bg-gray-100 rounded-lg mb-6 border border-gray-200">
             <button
               type="button"
@@ -145,7 +279,6 @@ export default function Login() {
             </button>
           </div>
 
-          {/* Error Message */}
           {error && (
             <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-100 flex items-center gap-2">
               <AlertCircle className="h-4 w-4 text-red-500 shrink-0" />
@@ -153,7 +286,6 @@ export default function Login() {
             </div>
           )}
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="username">
@@ -212,9 +344,13 @@ export default function Login() {
                 />
                 <span className="text-sm text-gray-600">Ingat saya</span>
               </label>
-              <Link to="/forgot-password" className="text-sm font-medium text-[#00183d] hover:underline">
+              <button
+                type="button"
+                onClick={handleForgot}
+                className="text-sm font-medium text-[#00183d] hover:underline"
+              >
                 Lupa Password?
-              </Link>
+              </button>
             </div>
 
             <button
@@ -236,12 +372,18 @@ export default function Login() {
             </button>
           </form>
 
-          {/* Developer Credit */}
           <p className="mt-8 text-center text-xs text-gray-400">
             miftahul haq. 2026
           </p>
         </div>
       </div>
+
+      {showForgot && (
+        <LupaPasswordModal
+          onClose={() => setShowForgot(false)}
+          initialName={role === 'siswa' ? username : ''}
+        />
+      )}
     </div>
   )
 }

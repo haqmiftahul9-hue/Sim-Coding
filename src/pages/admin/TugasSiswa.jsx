@@ -1,7 +1,9 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Plus, Search, Filter } from 'lucide-react'
-import { tasksData, submissionsData, studentsData, kelasOptions, statusOptions } from '../../Data/tugasData'
-import { assessments as assessmentsData } from '../../Data/penilaianData'
+import { tasksData, kelasOptions, statusOptions } from '../../data/tugasData'
+import { studentService } from '../../services/studentService'
+import { submissionService } from '../../services/submissionService'
+import { gradingService } from '../../services/gradingService'
 import TaskCard from '../../components/task/TaskCard'
 import CreateTaskModal from '../../components/task/CreateTaskModal'
 import SubmissionList from '../../components/task/SubmissionList'
@@ -10,8 +12,8 @@ import Toast from '../../components/task/Toast'
 
 export default function TugasSiswa() {
   const [tasks, setTasks] = useState(tasksData)
-  const [submissions, setSubmissions] = useState(submissionsData)
-  const [assessments, setAssessments] = useState(assessmentsData)
+  const [submissions, setSubmissions] = useState(() => submissionService.getAll())
+  const [grades, setGrades] = useState(() => gradingService.getAll())
   const [searchQuery, setSearchQuery] = useState('')
   const [filterKelas, setFilterKelas] = useState('')
   const [filterStatus, setFilterStatus] = useState('')
@@ -20,6 +22,26 @@ export default function TugasSiswa() {
   const [viewingTask, setViewingTask] = useState(null)
   const [deletingTask, setDeletingTask] = useState(null)
   const [toast, setToast] = useState({ visible: false, message: '' })
+
+  useEffect(() => {
+    const unsub = submissionService.subscribe((next) => setSubmissions([...next]))
+    const unsubG = gradingService.subscribe((next) => setGrades([...next]))
+    return () => {
+      unsub && unsub()
+      unsubG && unsubG()
+    }
+  }, [])
+
+  const studentsData = useMemo(
+    () =>
+      studentService.getAll().map((s) => ({
+        id: s.id,
+        nama: s.nama,
+        kelas: s.kelas,
+        initials: s.initials,
+      })),
+    []
+  )
 
   // Filter tasks
   const filteredTasks = useMemo(() => {
@@ -46,7 +68,7 @@ export default function TugasSiswa() {
   // Get graded count for a task
   const getGradedCount = (taskId) => {
     const submitted = submissions.filter((s) => s.task_id === taskId && s.file).length
-    const graded = assessments.filter((a) => a.task_id === taskId && a.status === 'published').length
+    const graded = grades.filter((a) => a.task_id === taskId && a.status === 'published').length
     return submitted - graded
   }
 
@@ -79,20 +101,16 @@ export default function TugasSiswa() {
 
     const taskId = deletingTask.id
 
-    // Remove task from tasks list
     setTasks((prev) => prev.filter((t) => t.id !== taskId))
-
-    // Remove related submissions
     setSubmissions((prev) => prev.filter((s) => s.task_id !== taskId))
+    setGrades((prev) => prev.filter((a) => a.task_id !== taskId))
 
-    // Remove related assessments
-    setAssessments((prev) => prev.filter((a) => a.task_id !== taskId))
+    submissionService.removeByTaskId(taskId)
+    gradingService.removeByTaskId(taskId)
 
-    // Close modal and show toast
     setDeletingTask(null)
     setToast({ visible: true, message: 'Tugas berhasil dihapus.' })
 
-    // Auto hide toast after 3 seconds
     setTimeout(() => {
       setToast({ visible: false, message: '' })
     }, 3000)
@@ -195,7 +213,7 @@ export default function TugasSiswa() {
           task={viewingTask}
           students={studentsData}
           submissions={submissions}
-          assessments={assessments}
+          assessments={grades}
           onClose={() => setViewingTask(null)}
         />
       )}

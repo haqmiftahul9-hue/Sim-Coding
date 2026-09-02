@@ -53,6 +53,7 @@ export default function AttendanceTable({ rows, startNo, sortKey, sortDir, onSor
             <th className="p-4 font-medium">Jam Pulang</th>
             <th className="p-4 font-medium">Metode</th>
             <SortHeader label="Status" sortKey="status" activeKey={sortKey} dir={sortDir} onSort={onSort} />
+            <th className="p-4 font-medium">Lokasi</th>
             <th className="p-4 font-medium">Keterangan</th>
           </tr>
         </thead>
@@ -82,13 +83,14 @@ export default function AttendanceTable({ rows, startNo, sortKey, sortDir, onSor
                     {p.status}
                   </span>
                 </td>
+                <td className="p-4 text-slate-500">{p.lokasi || '-'}</td>
                 <td className="p-4 text-slate-500">{p.keterangan}</td>
               </tr>
             )
           })}
           {rows.length === 0 && (
             <tr>
-              <td colSpan={9} className="p-10 text-center text-sm text-slate-400">
+              <td colSpan={10} className="p-10 text-center text-sm text-slate-400">
                 Tidak ada data presensi yang cocok.
               </td>
             </tr>

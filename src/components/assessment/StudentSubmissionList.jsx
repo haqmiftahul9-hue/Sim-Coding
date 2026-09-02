@@ -54,7 +54,9 @@ export default function StudentSubmissionList({
     <div className="bg-surface rounded-xl shadow-level-1 border border-[#F1F5F9] flex flex-col h-full overflow-hidden">
       {/* Header */}
       <div className="p-4 border-b border-outline-variant bg-surface-container-lowest">
-        <h3 className="font-headline-sm text-headline-sm text-primary truncate">{task.judul_tugas}</h3>
+        <h3 className="font-headline-sm text-headline-sm text-primary truncate">
+          {task.judul_tugas || task.judul}
+        </h3>
         <p className="font-label-sm text-label-sm text-outline mt-0.5">{task.kelas}</p>
       </div>
 

@@ -18,15 +18,19 @@ import {
 } from 'lucide-react'
 import { students } from '../../data/students'
 import { studentDetail } from '../../data/studentDetail'
+import { studentService } from '../../services/studentService'
+import { portofolioService } from '../../services/portofolioService'
 import StatusBadge from '../../components/common/StatusBadge'
 import OverviewStat from '../../components/admin/OverviewStat'
 import { downloadRaporPdf } from '../../lib/raporPdf'
+import { BookOpen, Heart, Star, Code } from 'lucide-react'
 
 const tabs = [
   { id: 'overview', label: 'Overview', icon: LayoutDashboard },
   { id: 'presensi', label: 'Riwayat Presensi', icon: Fingerprint },
   { id: 'tugas', label: 'Daftar Tugas', icon: ClipboardList },
   { id: 'penilaian', label: 'Penilaian', icon: GraduationCap },
+  { id: 'portofolio', label: 'Portofolio', icon: BookOpen },
   { id: 'rapor', label: 'Rapor', icon: FileText },
 ]
 
@@ -293,6 +297,124 @@ export default function DetailSiswa() {
               </table>
             </div>
           </section>
+        </div>
+      )}
+
+      {/* PORTOFOLIO */}
+      {active === 'portofolio' && (
+        <div className="space-y-6">
+          {(() => {
+            const studentIdNum = Number(id)
+            const studentProfile = studentService.getById(studentIdNum)
+            const porto = portofolioService.getByStudentId(studentIdNum)
+            const displayName = studentProfile?.nama || base?.name || student.name
+            const displayKelas = studentProfile?.kelas || base?.kelas || student.kelas
+            const displayNis = studentProfile?.nis || base?.nis || student.nis
+            const initials = (displayName || 'S')
+              .split(' ')
+              .map((n) => n[0])
+              .join('')
+              .slice(0, 2)
+              .toUpperCase()
+
+            return (
+              <>
+                <div className="bg-gradient-to-r from-[#00183d] via-[#173E7A] to-[#3c5e9b] rounded-2xl p-6 text-white">
+                  <div className="flex items-center gap-5">
+                    {porto.foto ? (
+                      <img
+                        src={porto.foto}
+                        alt={displayName}
+                        className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
+                      />
+                    ) : (
+                      <div className="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center text-2xl font-bold border-4 border-white shadow-lg">
+                        {initials}
+                      </div>
+                    )}
+                    <div>
+                      <h2 className="text-2xl font-bold">{displayName}</h2>
+                      <p className="text-white/80 text-sm mt-1">
+                        Kelas {displayKelas} • NIS {displayNis}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="card p-6">
+                    <h3 className="font-display text-lg font-semibold text-navy mb-4 flex items-center gap-2">
+                      <User className="h-4 w-4" />
+                      Identitas
+                    </h3>
+                    <div className="space-y-3">
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-slate-50">
+                        <User className="h-4 w-4 text-slate-400 mt-0.5" />
+                        <div>
+                          <p className="text-xs text-slate-500">Nama Lengkap</p>
+                          <p className="text-sm font-semibold text-navy">{displayName}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-slate-50">
+                        <School className="h-4 w-4 text-slate-400 mt-0.5" />
+                        <div>
+                          <p className="text-xs text-slate-500">Kelas</p>
+                          <p className="text-sm font-semibold text-navy">{displayKelas}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-slate-50">
+                        <Hash className="h-4 w-4 text-slate-400 mt-0.5" />
+                        <div>
+                          <p className="text-xs text-slate-500">Nomor Siswa (NIS)</p>
+                          <p className="text-sm font-semibold text-navy">{displayNis}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="card p-5">
+                      <h3 className="font-display text-sm font-semibold text-navy mb-2 flex items-center gap-2">
+                        <Heart className="h-4 w-4 text-rose-500" />
+                        Hobi
+                      </h3>
+                      <p className="text-sm text-slate-700">
+                        {porto.hobi || <span className="text-slate-400 italic">Belum diisi</span>}
+                      </p>
+                    </div>
+                    <div className="card p-5">
+                      <h3 className="font-display text-sm font-semibold text-navy mb-2 flex items-center gap-2">
+                        <Star className="h-4 w-4 text-amber-500" />
+                        Cita-Cita
+                      </h3>
+                      <p className="text-sm text-slate-700">
+                        {porto.citaCita || <span className="text-slate-400 italic">Belum diisi</span>}
+                      </p>
+                    </div>
+                    <div className="card p-5">
+                      <h3 className="font-display text-sm font-semibold text-navy mb-2 flex items-center gap-2">
+                        <Code className="h-4 w-4 text-emerald-500" />
+                        Keahlian & Minat Coding
+                      </h3>
+                      <p className="text-sm text-slate-700 whitespace-pre-line">
+                        {porto.keahlian || <span className="text-slate-400 italic">Belum diisi</span>}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="card p-6">
+                  <h3 className="font-display text-sm font-semibold text-navy mb-2 flex items-center gap-2">
+                    <BookOpen className="h-4 w-4" />
+                    Deskripsi Diri
+                  </h3>
+                  <p className="text-sm text-slate-700 whitespace-pre-line">
+                    {porto.deskripsi || <span className="text-slate-400 italic">Belum ada deskripsi</span>}
+                  </p>
+                </div>
+              </>
+            )
+          })()}
         </div>
       )}
 

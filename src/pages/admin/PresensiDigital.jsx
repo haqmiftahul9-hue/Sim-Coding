@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Pencil, FileDown, QrCode, Camera, ListChecks } from 'lucide-react'
-import { students } from '../../data/students'
-import { presensiService } from '../../services/presensiService'
+import { studentService } from '../../services/studentService'
+import { attendanceService } from '../../services/attendanceService'
 import AttendanceFilter from '../../components/presensi/AttendanceFilter'
 import AttendanceTable from '../../components/presensi/AttendanceTable'
 import ManualAttendanceModal from '../../components/presensi/ManualAttendanceModal'
@@ -18,6 +18,14 @@ const tabs = [
   { id: 'rekap', label: 'Rekap Presensi', icon: ListChecks },
 ]
 
+const adminStudents = studentService.getAll().map((s) => ({
+  id: s.id,
+  name: s.nama,
+  kelas: s.kelas,
+  nis: s.nis,
+  barcode: s.nis,
+}))
+
 export default function PresensiDigital() {
   const [active, setActive] = useState('rekap')
   const [rows, setRows] = useState([])
@@ -31,8 +39,8 @@ export default function PresensiDigital() {
   const [manualOpen, setManualOpen] = useState(false)
 
   useEffect(() => {
-    setRows(presensiService.getAll())
-    const unsubscribe = presensiService.subscribe((data) => {
+    setRows(attendanceService.getAll())
+    const unsubscribe = attendanceService.subscribe((data) => {
       setRows([...data])
     })
     return unsubscribe
@@ -52,8 +60,18 @@ export default function PresensiDigital() {
   }, [rows, search, kelas, status, tanggal])
 
   const handleAddAttendance = (entry) => {
-    presensiService.addAttendance(entry)
-    setManualOpen(false)
+    const student = adminStudents.find((s) => s.name === entry.nama) || null
+    attendanceService.addAttendance({
+      studentId: student?.id ?? entry.studentId ?? null,
+      nama: entry.nama,
+      kelas: entry.kelas,
+      jamMasuk: entry.waktu,
+      metode: entry.metode || 'Barcode',
+      status: entry.status || 'Hadir',
+      lokasi: entry.lokasi || 'Gerbang Sekolah',
+      keterangan: entry.kode ? `Barcode: ${entry.kode}` : 'Scan oleh admin',
+    })
+    if (active !== 'rekap') setActive('rekap')
     resetPage()
   }
 
@@ -179,9 +197,9 @@ export default function PresensiDigital() {
           />
         </section>
       ) : active === 'barcode' ? (
-        <BarcodeScanner students={students} onScan={handleAddAttendance} />
+        <BarcodeScanner students={adminStudents} onScan={handleAddAttendance} />
       ) : active === 'wajah' ? (
-        <FaceScanner students={students} onScan={handleAddAttendance} />
+        <FaceScanner students={adminStudents} onScan={handleAddAttendance} />
       ) : (
         <section className="card p-10 text-center text-sm text-slate-400">
           Fitur “{tabs.find((t) => t.id === active)?.label}” akan segera tersedia.
@@ -191,7 +209,7 @@ export default function PresensiDigital() {
       <ManualAttendanceModal
         open={manualOpen}
         onClose={() => setManualOpen(false)}
-        students={students}
+        students={adminStudents}
         onSave={handleAddAttendance}
       />
     </div>

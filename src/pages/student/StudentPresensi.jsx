@@ -48,11 +48,15 @@ export default function StudentPresensi() {
 
   useEffect(() => {
     if (studentId) {
-      const status = presensiService.getTodayStatusByStudentId(studentId)
-      setTodayStatus(status)
-      const history = presensiService.getByStudentId(studentId).slice(0, 5)
-      setRecentHistory(history)
+      const refresh = () => {
+        setTodayStatus(presensiService.getTodayStatusByStudentId(studentId))
+        setRecentHistory(presensiService.getByStudentId(studentId).slice(0, 5))
+      }
+      refresh()
+      const unsub = presensiService.subscribe(refresh)
+      return () => unsub && unsub()
     }
+    return undefined
   }, [studentId])
 
   const startCamera = useCallback(async () => {
@@ -107,10 +111,29 @@ export default function StudentPresensi() {
 
     await new Promise((resolve) => setTimeout(resolve, 2000))
 
+    let lokasi = '-'
+    if (navigator.geolocation) {
+      try {
+        const pos = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            timeout: 4000,
+            maximumAge: 60000,
+          })
+        })
+        lokasi = `${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)}`
+      } catch {
+        lokasi = 'Tidak tersedia'
+      }
+    }
+
     const entry = presensiService.addAttendance({
+      studentId,
       nama: studentNama,
       kelas: studentKelas,
-      metode: 'Scan Wajah',
+      metode: 'Face Recognition',
+      lokasi,
+      status: 'Hadir',
+      keterangan: 'Scan wajah oleh siswa',
     })
 
     setScanResult({
@@ -122,8 +145,7 @@ export default function StudentPresensi() {
     stopCamera()
 
     if (studentId) {
-      const history = presensiService.getByStudentId(studentId).slice(0, 5)
-      setRecentHistory(history)
+      setRecentHistory(presensiService.getByStudentId(studentId).slice(0, 5))
     }
   }, [cameraOn, studentNama, studentKelas, studentId, startCamera, stopCamera])
 

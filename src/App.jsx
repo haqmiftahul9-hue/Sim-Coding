@@ -20,6 +20,7 @@ import StudentDashboard from './pages/student/StudentDashboard'
 import StudentPresensi from './pages/student/StudentPresensi'
 import StudentTugas from './pages/student/StudentTugas'
 import StudentNilai from './pages/student/StudentNilai'
+import StudentPortofolio from './pages/student/StudentPortofolio'
 
 function AdminLayout({ children }) {
   return (
@@ -199,6 +200,16 @@ function AppRoutes() {
           <StudentRoute>
             <StudentLayout>
               <StudentNilai />
+            </StudentLayout>
+          </StudentRoute>
+        }
+      />
+      <Route
+        path="/student/portofolio"
+        element={
+          <StudentRoute>
+            <StudentLayout>
+              <StudentPortofolio />
             </StudentLayout>
           </StudentRoute>
         }

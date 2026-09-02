@@ -1,6 +1,10 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect, useMemo } from 'react'
 import { Download, ClipboardList, BarChart3 } from 'lucide-react'
-import { tasks, studentsPenilaian, submissions, assessments as initialAssessments } from '../../Data/penilaianData'
+import { tasks as penilaianTasks, studentsPenilaian } from '../../data/penilaianData'
+import { tasksData } from '../../data/tugasData'
+import { studentService } from '../../services/studentService'
+import { submissionService } from '../../services/submissionService'
+import { gradingService } from '../../services/gradingService'
 import TaskList from '../../components/assessment/TaskList'
 import StudentSubmissionList from '../../components/assessment/StudentSubmissionList'
 import SubmissionDetail from '../../components/assessment/SubmissionDetail'
@@ -12,12 +16,35 @@ const tabs = [
   { id: 'summary', label: 'Rekap Nilai', icon: BarChart3 },
 ]
 
+const allTasks = penilaianTasks.length ? penilaianTasks : tasksData
+
 export default function Penilaian() {
   const [activeTab, setActiveTab] = useState('tasks')
   const [selectedTask, setSelectedTask] = useState(null)
   const [selectedStudent, setSelectedStudent] = useState(null)
-  const [assessmentsData, setAssessmentsData] = useState(initialAssessments)
+  const [submissions, setSubmissions] = useState(() => submissionService.getAll())
+  const [assessmentsData, setAssessmentsData] = useState(() => gradingService.getAll())
   const [notification, setNotification] = useState(null)
+
+  useEffect(() => {
+    const unsubS = submissionService.subscribe((next) => setSubmissions([...next]))
+    const unsubG = gradingService.subscribe((next) => setAssessmentsData([...next]))
+    return () => {
+      unsubS && unsubS()
+      unsubG && unsubG()
+    }
+  }, [])
+
+  const students = useMemo(
+    () =>
+      studentService.getAll().map((s) => ({
+        id: s.id,
+        nama: s.nama,
+        kelas: s.kelas,
+        initials: s.initials,
+      })),
+    []
+  )
 
   const showNotification = (message, type = 'success') => {
     setNotification({ message, type })
@@ -41,39 +68,24 @@ export default function Penilaian() {
     return assessmentsData.find((a) => a.task_id === taskId && a.student_id === studentId)
   }
 
+  const persistGrade = (data, status) => {
+    if (!data?.student_id || !data?.task_id) return
+    const result = gradingService.upsertGrade({ ...data, status })
+    if (result.success) {
+      showNotification(status === 'published' ? 'Nilai berhasil diterbitkan!' : 'Draft berhasil disimpan!')
+    }
+  }
+
   const handleSaveAssessment = (data) => {
-    setAssessmentsData((prev) => {
-      const existing = prev.findIndex(
-        (a) => a.task_id === data.task_id && a.student_id === data.student_id
-      )
-      if (existing >= 0) {
-        const updated = [...prev]
-        updated[existing] = { ...updated[existing], ...data }
-        return updated
-      }
-      return [...prev, { ...data, id: Date.now() }]
-    })
-    showNotification('Draft berhasil disimpan!')
+    persistGrade(data, 'draft')
   }
 
   const handlePublishAssessment = (data) => {
-    setAssessmentsData((prev) => {
-      const existing = prev.findIndex(
-        (a) => a.task_id === data.task_id && a.student_id === data.student_id
-      )
-      if (existing >= 0) {
-        const updated = [...prev]
-        updated[existing] = { ...updated[existing], ...data }
-        return updated
-      }
-      return [...prev, { ...data, id: Date.now() }]
-    })
-    showNotification('Nilai berhasil diterbitkan!')
+    persistGrade(data, 'published')
   }
 
   return (
     <div className="mx-auto max-w-container-max space-y-6">
-      {/* Notification */}
       {notification && (
         <div
           className={`fixed top-4 right-4 z-50 flex items-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-white shadow-lg transition-all ${
@@ -84,13 +96,12 @@ export default function Penilaian() {
         </div>
       )}
 
-      {/* Page Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
         <div>
           <h2 className="font-headline-lg text-headline-lg text-primary mb-1">Penilaian Siswa</h2>
           <p className="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
             <ClipboardList className="h-[18px] w-[18px]" />
-            {tasks.length} tugas aktif - Kelas {tasks[0]?.kelas}
+            {allTasks.length} tugas - {students.length} siswa
           </p>
         </div>
         <div className="flex gap-2">
@@ -104,7 +115,6 @@ export default function Penilaian() {
         </div>
       </div>
 
-      {/* Tabs */}
       <div className="flex gap-1 overflow-x-auto border-b border-surface-border">
         {tabs.map((tab) => {
           const Icon = tab.icon
@@ -127,13 +137,11 @@ export default function Penilaian() {
         })}
       </div>
 
-      {/* Tab Content */}
       {activeTab === 'tasks' && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
-          {/* Left Column: Task List */}
           <div className="lg:col-span-3 flex flex-col gap-4 h-[calc(100vh-200px)]">
             <TaskList
-              tasks={tasks}
+              tasks={allTasks}
               submissions={submissions}
               assessments={assessmentsData}
               selectedTaskId={selectedTask?.id}
@@ -141,11 +149,10 @@ export default function Penilaian() {
             />
           </div>
 
-          {/* Middle Column: Student Submission List */}
           <div className="lg:col-span-3 flex flex-col gap-4 h-[calc(100vh-200px)]">
             <StudentSubmissionList
               task={selectedTask}
-              students={studentsPenilaian}
+              students={students}
               submissions={submissions}
               assessments={assessmentsData}
               selectedStudentId={selectedStudent?.id}
@@ -153,9 +160,7 @@ export default function Penilaian() {
             />
           </div>
 
-          {/* Right Column: Assessment Workspace */}
           <div className="lg:col-span-6 flex flex-col gap-6">
-            {/* Submission Preview Card */}
             {selectedStudent && selectedTask && (
               <SubmissionDetail
                 student={selectedStudent}
@@ -163,7 +168,6 @@ export default function Penilaian() {
               />
             )}
 
-            {/* Grading Form */}
             <AssessmentForm
               student={selectedStudent}
               task={selectedTask}
@@ -173,7 +177,6 @@ export default function Penilaian() {
               onPublish={handlePublishAssessment}
             />
 
-            {/* Actions Bottom Bar */}
             {selectedStudent && selectedTask && getSubmission(selectedTask.id, selectedStudent.id)?.file && (
               <div className="bg-surface rounded-xl shadow-level-1 border border-[#F1F5F9] p-4 flex justify-end gap-3 sticky bottom-4 z-10">
                 <button
@@ -215,8 +218,8 @@ export default function Penilaian() {
 
       {activeTab === 'summary' && (
         <AssessmentSummary
-          students={studentsPenilaian}
-          tasks={tasks}
+          students={students}
+          tasks={allTasks}
           assessments={assessmentsData}
         />
       )}
